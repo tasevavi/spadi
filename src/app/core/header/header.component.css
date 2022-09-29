@@ -1,0 +1,34 @@
+/* .header {
+    background-color: #05303d;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    overflow: hidden;
+} */
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+a, span {
+    float: left;
+    color: #e7dfdd;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+a:hover {
+    font-size: 19px;
+    border-radius: 15px 15px 15px 15px;
+    cursor: pointer;
+}
+
+.active {
+    font-size: 19px;
+    border-radius: 15px 15px 15px 15px;
+}
+
+a, #common {
+    float: left;
+}

@@ -1,1 +1,33 @@
-<p>header works!</p>
+<nav class="header">
+    <mat-toolbar color="warn">
+        <button mat-icon-button class="icon" aria-label="icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>
+            <a routerLink="/post">Donate now</a> 
+        </span>
+        <span class="example-spacer"></span>
+        <div class="user" *ngIf="isLoggedIn">
+            <span class="icon">
+                <a routerLink="/catalog"><mat-icon>assignment</mat-icon></a> 
+            </span>
+            <span class="icon">
+                <a routerLink="/search"><mat-icon>search</mat-icon></a> 
+            </span>
+            <span class="icon">
+                <a routerLink="/users/:id"><mat-icon>account_circle</mat-icon></a> 
+            </span>
+            <span class="icon">
+                <a (click)="logout()" routerLink="/users/logout"><mat-icon>logout</mat-icon></a> 
+            </span>
+        </div>
+        <div class="guest" *ngIf="!isLoggedIn">
+            <span>
+                <a routerLink="/users/login">Login</a> 
+            </span>
+            <span>
+                <a routerLink="/users/register">Register</a> 
+            </span>
+        </div>
+    </mat-toolbar>
+</nav>
