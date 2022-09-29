@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-header',
@@ -6,18 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
-  get isLoggedIn(): boolean {
-    return false;
-    //return this.userService.isLoggedIn;
-  }
-
-  constructor() { }
+  constructor( 
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  isLoggedIn(): boolean {
+    return this.userService.isUserLoggedIn();
+  }
+
   logout(): void {
+    this.userService.logout();
     // this.userService.logout().subscribe(() => {
     //   this.router.navigate(['/']);
     // });
