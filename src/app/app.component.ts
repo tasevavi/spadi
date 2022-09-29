@@ -28,3 +28,4 @@ export class AppComponent {
 //TODO change title
 //TODO add terms and services
 //TODO add About
+//TODO in assets create Home folder for all images for the home page
