@@ -1,1 +1,20 @@
-<p>home works!</p>
+<h1 id="heading1">DONATE NOW</h1>
+<br>
+<div id="image-div">
+  <img class="animation home-image" alt="donations-statistics">
+</div>
+<main>
+    <ng-container *ngIf="isLoggedIn()">
+        <div class="message-container">
+            <p>Check all donated items in the <a routerLink="/catalog">catalog</a>.</p>
+            <p>Do you want to donate something? Post it <a routerLink="/post">here</a>.</p>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!isLoggedIn()">
+        <div class="message-container">
+            <p>If you want to search through all donations, create a <a routerLink="/users/register">registration</a>.</p>
+            <p>If you have a registration, login <a routerLink="/users/login">here</a>.</p>
+        </div>
+    </ng-container>
+    <br>
+</main>
