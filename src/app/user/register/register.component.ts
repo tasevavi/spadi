@@ -11,24 +11,11 @@ import { UserService } from '../user.service';
 })
 export class RegisterComponent {
   
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private userService: UserService,
-    private router: Router
-  ) { }
+  constructor(private userService: UserService) { }
 
   register(form: NgForm) {
     if (form.invalid) { return; }
     const { email, password, rePassword } = form.value;
-    this.userService.register({email, password, rePassword}).subscribe({
-      next: () => {
-        const redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'] || '/';
-        this.router.navigate([redirectUrl]);
-      }, 
-      error: (err: any) => {
-        console.log(err);
-      }
-    });
+    this.userService.registerUserWithEmailAndPassword(email, password)
   }
-
 }

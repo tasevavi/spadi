@@ -11,17 +11,17 @@
             </ng-container>
 
             <label for="password">Password</label>
-            <input id="password" type="password" name="password" #passwordInput="ngModel" ngModel required [minlength]="4" placeholder="****">
+            <input id="password" type="password" name="password" #passwordInput="ngModel" ngModel required [minlength]="6" placeholder="******">
             <ng-container *ngIf="passwordInput.touched">
                 <p *ngIf="passwordInput.errors?.['required']" class="error">Password is required</p>
-                <p *ngIf="passwordInput.errors?.['minlength']" class="error">Password should be at least 4 characters long</p>
+                <p *ngIf="passwordInput.errors?.['minlength']" class="error">Password should be at least 6 characters long</p>
             </ng-container>
 
             <label for="rePassword">Repeat Password</label>
-            <input id="rePassword" type="password" name="rePassword" #rePasswordlInput="ngModel" ngModel required [minlength]="4" placeholder="****">
+            <input id="rePassword" type="password" name="rePassword" #rePasswordlInput="ngModel" ngModel required [minlength]="6" placeholder="******">
             <ng-container *ngIf="rePasswordlInput.touched">
                 <p *ngIf="rePasswordlInput.errors?.['required']" class="error">Repeat password is required</p>
-                <p *ngIf="rePasswordlInput.errors?.['minlength']" class="error">Repeat password should be at least 4 characters long</p>
+                <p *ngIf="rePasswordlInput.errors?.['minlength']" class="error">Repeat password should be at least 6 characters long</p>
             </ng-container>
             
             <input type="submit" class="registerbtn button" value="Register">

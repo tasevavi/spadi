@@ -1,27 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
-import { tap } from "rxjs/operators";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
 import { environment } from "src/environments/environment";
+import { ActivatedRoute, Router } from '@angular/router';
 
 const apiURL = environment.apiURL; 
-//TODO: move this interface to a interface folder 
-interface IUser {
-  email: string,
-  firstName: string, 
-  lastName: string,
-  locationCity: string,
-  posts: string[]
-}
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   
-  user: IUser | null | undefined = undefined;
-  
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient, 
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) { }
 
   initFirebaseAuth() {
     onAuthStateChanged(getAuth(), this.authStateObserver);
@@ -36,11 +30,22 @@ export class UserService {
     await signInWithPopup(getAuth(), provider);
   }
 
-  register(data: { email: string, password: string, rePassword: string }) {
-    return this.http.post<IUser>(`${apiURL}/users/register.json`, data, { withCredentials: false }).pipe(
-        tap((user) => this.user = user)
+  registerUserWithEmailAndPassword(email: string, password: string) {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        const redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'] || '/';
+        this.router.navigate([redirectUrl]);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      }
     );
-}
+  }
 
   logout() {
     signOut(getAuth());
