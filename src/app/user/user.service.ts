@@ -1,11 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { tap } from "rxjs/operators";
+import { environment } from "src/environments/environment";
+
+const apiURL = environment.apiURL; 
+//TODO: move this interface to a interface folder 
+interface IUser {
+  email: string,
+  firstName: string, 
+  lastName: string,
+  locationCity: string,
+  posts: string[]
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  
+  user: IUser | null | undefined = undefined;
   
   constructor(private http: HttpClient) { }
 
@@ -21,6 +35,12 @@ export class UserService {
     const provider = new GoogleAuthProvider();
     await signInWithPopup(getAuth(), provider);
   }
+
+  register(data: { email: string, password: string, rePassword: string }) {
+    return this.http.post<IUser>(`${apiURL}/users/register.json`, data, { withCredentials: false }).pipe(
+        tap((user) => this.user = user)
+    );
+}
 
   logout() {
     signOut(getAuth());

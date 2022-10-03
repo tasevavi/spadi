@@ -2,15 +2,6 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
-//TODO: move this interface to a interface folder 
-interface IUser {
-  email: string,
-  firstName: string, 
-  lastName: string,
-  locationCity: string,
-  posts: string[]
-}
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

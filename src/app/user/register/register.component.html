@@ -1,0 +1,40 @@
+<section id="register">
+    <form #form="ngForm" method="POST" (ngSubmit)="register(form)" id="register-form">
+        <div class="container">
+            <h1>Register</h1>
+
+            <label for="email">Email</label>
+            <input #emailInput="ngModel" ngModel id="email" type="email" name="email" placeholder="Enter email" required email>
+            <ng-container *ngIf="emailInput.touched">
+                <p *ngIf="emailInput.errors?.['required']" class="error">Email is required</p>
+                <p *ngIf="emailInput.errors?.['email']" class="error">Email is not valid</p>
+            </ng-container>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" #passwordInput="ngModel" ngModel required [minlength]="4" placeholder="****">
+            <ng-container *ngIf="passwordInput.touched">
+                <p *ngIf="passwordInput.errors?.['required']" class="error">Password is required</p>
+                <p *ngIf="passwordInput.errors?.['minlength']" class="error">Password should be at least 4 characters long</p>
+            </ng-container>
+
+            <label for="rePassword">Repeat Password</label>
+            <input id="rePassword" type="password" name="rePassword" #rePasswordlInput="ngModel" ngModel required [minlength]="4" placeholder="****">
+            <ng-container *ngIf="rePasswordlInput.touched">
+                <p *ngIf="rePasswordlInput.errors?.['required']" class="error">Repeat password is required</p>
+                <p *ngIf="rePasswordlInput.errors?.['minlength']" class="error">Repeat password should be at least 4 characters long</p>
+            </ng-container>
+            
+            <input type="submit" class="registerbtn button" value="Register">
+
+            <div class="container signin">
+                <p>Already have an account? <a routerLink="/users/login">Sign in</a>.</p>
+            </div>
+
+            <div class="message-container">
+                <p class="text-small m-4">By creating an account, you agree to the Terms of Service. For more information, see the
+                    <a routerLink="/about/privacy">Privacy Statement</a>.
+                </p>
+            </div>
+        </div>
+    </form>
+</section>
