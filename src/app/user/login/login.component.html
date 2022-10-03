@@ -1,0 +1,40 @@
+<section id="login">
+    <!-- <div><p>Login with</p><button (click)="loginWithGoogle()">Google</button></div> -->
+    <form #form="ngForm" method="POST" (ngSubmit)="login(form)" id="login-form">
+        <div class="container">
+            <h1>Login</h1>
+
+            <label for="email">Email</label>
+            <input #emailInput="ngModel" ngModel id="email" type="email" name="email" placeholder="Enter email" required email>
+            <ng-container *ngIf="emailInput.touched">
+                <p *ngIf="emailInput.errors?.['required']" class="error">Email is required</p>
+                <p *ngIf="emailInput.errors?.['email']" class="error">Email is not valid</p>
+            </ng-container>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" #passwordInput="ngModel" ngModel required placeholder="****">
+            <ng-container *ngIf="passwordInput.touched && passwordInput.errors?.['required']">
+                <p class="error">Password is required</p>
+            </ng-container>
+            
+            <input type="submit" class="loginbtn button" value="Login">
+            
+            <button class="googlebtn" (click)="loginWithGoogle()">
+                <div class="google-icon-wrapper">
+                  <img class="google-icon" src="../../../assets/google-icon.svg"/>
+                </div>
+                <p class="btn-text"><b>Sign in with google</b></p>
+            </button>
+
+            <div class="container signin">
+                <p>Don't have an account? <a routerLink="/users/register">Register</a>.</p>
+            </div>
+
+            <div class="message-container">
+                <p class="text-small m-4">By creating an account, you agree to the Terms of Service. For more information, see the
+                    <a routerLink="/about">Privacy Statement</a>.
+                </p>
+            </div>
+        </div>
+    </form>
+</section>
