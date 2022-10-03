@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAnalyticsModule, 
     BrowserAnimationsModule, 
     CoreModule, 
-    
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
