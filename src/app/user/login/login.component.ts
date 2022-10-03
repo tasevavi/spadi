@@ -10,27 +10,15 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private userService: UserService,
-    private router: Router
-  ) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
   login(form: NgForm): void {
-    // if (form.invalid) { return; }
-    // const { email, password } = form.value;
-    // this.userService.login({ email, password }).subscribe({
-    //   next: () => {
-    //     const redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'] || '/';
-    //     this.router.navigate([redirectUrl]);
-    //   },
-    //   error: (err: any) => {
-    //     console.log(err);
-    //   }
-    // });
+    if (form.invalid) { return; }
+    const { email, password } = form.value;
+    this.userService.loginUserWithEmailAndPassword(email, password);
   }
 
   loginWithGoogle(): void {

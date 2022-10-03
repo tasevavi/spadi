@@ -1,5 +1,4 @@
 <section id="login">
-    <!-- <div><p>Login with</p><button (click)="loginWithGoogle()">Google</button></div> -->
     <form #form="ngForm" method="POST" (ngSubmit)="login(form)" id="login-form">
         <div class="container">
             <h1>Login</h1>
@@ -12,7 +11,7 @@
             </ng-container>
 
             <label for="password">Password</label>
-            <input id="password" type="password" name="password" #passwordInput="ngModel" ngModel required placeholder="****">
+            <input id="password" type="password" name="password" #passwordInput="ngModel" ngModel required placeholder="******">
             <ng-container *ngIf="passwordInput.touched && passwordInput.errors?.['required']">
                 <p class="error">Password is required</p>
             </ng-container>

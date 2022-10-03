@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { environment } from "src/environments/environment";
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -28,6 +28,22 @@ export class UserService {
   async loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     await signInWithPopup(getAuth(), provider);
+  }
+
+  loginUserWithEmailAndPassword(email: string, password: string) {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        const redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'] || '/';
+        this.router.navigate([redirectUrl]);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   }
 
   registerUserWithEmailAndPassword(email: string, password: string) {
