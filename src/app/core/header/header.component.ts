@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/user/user.service';
 
 @Component({
@@ -8,10 +7,7 @@ import { UserService } from 'src/app/user/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor( 
-    private userService: UserService,
-    private router: Router
-  ) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +18,5 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.userService.logout();
-    // this.userService.logout().subscribe(() => {
-    //   this.router.navigate(['/']);
-    // });
   }
 }

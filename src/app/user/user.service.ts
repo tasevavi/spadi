@@ -64,7 +64,18 @@ export class UserService {
   }
 
   logout() {
-    signOut(getAuth());
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful
+        this.router.navigate(['/']);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      }
+    );
   }
 
   authStateObserver(user: any) {

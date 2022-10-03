@@ -21,7 +21,7 @@
                 <a routerLink="/users/:id"><mat-icon>account_circle</mat-icon></a> 
             </span>
             <span class="icon">
-                <a (click)="logout()" routerLink="/users/logout"><mat-icon>logout</mat-icon></a> 
+                <a (click)="logout()"><mat-icon>logout</mat-icon></a> 
             </span>
         </div>
         <div class="guest" *ngIf="!isLoggedIn()">
