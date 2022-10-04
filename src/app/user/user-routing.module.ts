@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-//import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
     {
@@ -28,15 +28,15 @@ const routes: Routes = [
                     authenticationFailureRedirectUrl: '/',
                 }
             },
-            // {
-            //     path: ':id',
-            //     component: ProfileComponent,
-            //     //canActivate: [AuthActivate],
-            //     data: {
-            //         authenticationRequired: true,
-            //         authenticationFailureRedirectUrl: '/login',
-            //     }
-            // }
+            {
+                path: ':id',
+                component: ProfileComponent,
+                //canActivate: [AuthActivate],
+                data: {
+                    authenticationRequired: true,
+                    authenticationFailureRedirectUrl: '/login',
+                }
+            }
         ]
     }
 ];

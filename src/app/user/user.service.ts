@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { environment } from "src/environments/environment";
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { environment } from "src/environments/environment";
+import { Observable } from 'rxjs';
 
 const apiURL = environment.apiURL; 
 
@@ -10,12 +12,15 @@ const apiURL = environment.apiURL;
   providedIn: 'root'
 })
 export class UserService {
-  
+  // users: Observable<any[]>;
   constructor(
     private http: HttpClient, 
     private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router, 
+    private firestore: AngularFirestore
+  ) {
+    //this.users = firestore.collection('users').valueChanges();
+  }
 
   initFirebaseAuth() {
     onAuthStateChanged(getAuth(), this.authStateObserver);
@@ -85,6 +90,11 @@ export class UserService {
     } else {
       //user is not logged in
     }
+  }
+
+  getUsersFromDatabase(): Observable<any[]> {
+    const users: Observable<any[]> = this.firestore.collection('users').valueChanges();
+    return users;
   }
 
   getProfilePicUrl() {
