@@ -21,3 +21,4 @@ export class AppComponent {
 //TODO add About
 //TODO in assets create Home folder for all images for the home page
 //TODO fix the responsive design (header etc.)
+//Bootstrap - footer is wrong -make it only on the bottom of the page
