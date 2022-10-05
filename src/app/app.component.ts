@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +6,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  users: Observable<any[]>;
-  constructor(firestore: AngularFirestore) {
-    this.users = firestore.collection('users').valueChanges();
-  }
-
   title = 'spadi';
 }
 //TODO add icon.io
@@ -22,3 +15,4 @@ export class AppComponent {
 //TODO in assets create Home folder for all images for the home page
 //TODO fix the responsive design (header etc.)
 //Bootstrap - footer is wrong -make it only on the bottom of the page
+//Fix all imports

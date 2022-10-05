@@ -1,9 +1,5 @@
 <app-header></app-header>
 <div id="content">
-  <!-- test DB connection -->
-  <ul>
-    <li *ngFor="let user of users | async">{{user.firstName}}</li>
-  </ul>
   <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
