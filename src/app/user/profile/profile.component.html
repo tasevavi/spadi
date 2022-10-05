@@ -1,5 +1,26 @@
 <p>profile works!</p>
-  <!-- test DB connection -->
-  <ul>
+
+<button class="button" (click)="showOrHideEditForm()">Edit profile</button>
+<section id="edit-userInformation-form" *ngIf="showEditForm">
+  <form #form="ngForm" method="POST" (ngSubmit)="changeUserInformation(form)" id="userInformation-form">
+    <div class="container">
+      <h1>Edit</h1>
+      <label for="email">Email</label>
+      <input #emailInput="ngModel" ngModel id="email" type="email" name="email" placeholder="Enter email" required email>
+      <ng-container *ngIf="emailInput.touched">
+        <p *ngIf="emailInput.errors?.['required']" class="error">Email is required</p>
+        <p *ngIf="emailInput.errors?.['email']" class="error">Email is not valid</p>
+      </ng-container>
+      <label for="firstName">First Name</label>
+      <input id="firstName" type="text" name="firstName" #firstNameInput="ngModel" ngModel placeholder="Your first name here">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" name="lastName" #lastNameInput="ngModel" ngModel placeholder="Your last name here">
+      <input type="submit" class="savebtn button" value="Save">
+    </div>
+  </form>
+</section>
+
+<!-- test DB connection -->
+<!-- <ul>
     <li *ngFor="let user of users | async">{{user.firstName}}</li>
-  </ul>
+  </ul> -->
