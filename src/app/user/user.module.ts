@@ -9,13 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
 import { UserService } from './user.service';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileEditFormComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,24 @@
+<form #form="ngForm" method="POST" (ngSubmit)="onSubmit(form)" id="edit-userInformation-form">
+    <div class="container">
+        <div>
+            <label for="firstName">First Name</label>
+            <input id="firstName" type="text" name="firstName" #firstNameInput="ngModel" ngModel [(ngModel)]="firstName" required firstName>
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input id="lastName" type="text" name="lastName" #lastNameInput="ngModel" ngModel [(ngModel)]="lastName" required lastName>
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input id="city" type="text" name="city" #cityInput="ngModel" ngModel [(ngModel)]="city" required city>
+        </div>
+        <div>
+            <label for="country">Country</label>
+            <input id="country" type="text" name="country" #countryInput="ngModel" [(ngModel)]="country" required country>
+        </div>
+        <div class="div-margins">
+            <button type="submit" class="savebtn btn">Save</button>
+            <button type="reset" class="cancelbtn btn">Cancel</button>
+        </div>
+    </div>
+</form>

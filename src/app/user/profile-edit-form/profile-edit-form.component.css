@@ -1,0 +1,74 @@
+#edit-userInformation-form {
+    width: 256px;
+    margin: auto;
+}
+
+.container {
+    background-color: white;
+    padding: 16px;
+    text-align: center;
+}
+
+label {
+    display: block;
+}
+
+input[type=text] {
+    width: 223px;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.div-margins {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.btn {
+    color: #fff;
+    padding: 16px 20px;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    width: 256px;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+}
+
+.savebtn {
+    background-color: #f44336; 
+}
+
+.cancelbtn {
+    background-color: grey;
+}
+
+.btn:hover {
+    opacity: 1;
+    font-size: 16px;
+}
+
+.btn-text {
+    float: center;
+    margin: 11px 11px 0 0;
+    color: white;
+    font-size: 14px;
+}
+
+.error {
+    color: #f44336;
+}
