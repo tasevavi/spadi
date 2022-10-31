@@ -24,14 +24,14 @@ export class ProfileComponent implements OnInit {
   }
 
   changeUserInformation(form: NgForm) {
+    console.log('changeUserInformation in profile component:', form);
     if (form.invalid) { 
       //TODO remove in the end -> only for debugging
       console.log('invalid form');
       return; 
     }
-    const { email, firstName, lastName } = form.value;
-    this.userService.setUserName(email, firstName, lastName, this.userUID);
-    //redirect to profile here or in the service?
+    //this.userService.setUserName(firstName, lastName, city, country, this.userUID);
+    this.showOrHideEditForm();
   }
 
   showOrHideEditForm() {

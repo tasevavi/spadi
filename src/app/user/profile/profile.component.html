@@ -1,24 +1,62 @@
-<p>profile works!</p>
-
-<button class="button" (click)="showOrHideEditForm()">Edit profile</button>
-<section id="edit-userInformation-form" *ngIf="showEditForm">
-  <form #form="ngForm" method="POST" (ngSubmit)="changeUserInformation(form)" id="userInformation-form">
-    <div class="container">
-      <h1>Edit</h1>
-      <label for="email">Email</label>
-      <input #emailInput="ngModel" ngModel id="email" type="email" name="email" placeholder="Enter email" required email>
-      <ng-container *ngIf="emailInput.touched">
-        <p *ngIf="emailInput.errors?.['required']" class="error">Email is required</p>
-        <p *ngIf="emailInput.errors?.['email']" class="error">Email is not valid</p>
-      </ng-container>
-      <label for="firstName">First Name</label>
-      <input id="firstName" type="text" name="firstName" #firstNameInput="ngModel" ngModel placeholder="Your first name here">
-      <label for="lastName">Last Name</label>
-      <input id="lastName" type="text" name="lastName" #lastNameInput="ngModel" ngModel placeholder="Your last name here">
-      <input type="submit" class="savebtn button" value="Save">
+<div>
+  <div style="grid-column: 1; display: block; width: 256px;">
+    <div style="box-sizing: border-box; display: block;">
+      <div style="display: block;">
+        <div style="display: block; align-items: center; margin-bottom: 0; box-sizing: border-box;">
+          <div style="display: inline-block; margin-right: 0; position: relative; flex-shrink: 0; width: 100%; z-index: 4; box-sizing: border-box;">
+            <img style="height:auto;" alt="" width="260" height="260" class="avatar avatar-user width-full border color-bg-default" src="https://avatars.githubusercontent.com/u/87774260?v=4">
+          </div>
+          <div class="vcard-names-container float-left js-profile-editable-names col-12 py-3 js-sticky js-user-profile-sticky-fields" data-original-top="0px" style="position: sticky;">
+            <h1 class="vcard-names ">
+              <span class="p-name vcard-fullname d-block overflow-hidden" itemprop="name">
+                Violeta Taseva
+              </span>
+              <span class="p-nickname vcard-username d-block" itemprop="additionalName">
+                tasevavi
+              </span>
+            </h1>
+          </div>
+          <div style="display: flex; flex-direction: column; box-sizing: border-box;">
+            <div style="order: inherit; box-sizing: border-box; display: block;">
+              <div *ngIf="showEditForm" style="display: flex; flex-direction: column; box-sizing: border-box;">
+                <app-profile-edit-form 
+                  [firstName]="'Violeta'" [lastName]="'Taseva'" [city]="'Sofia'" [country]="'Bulgaria'"
+                  (ret)="changeUserInformation($event)">
+                </app-profile-edit-form>
+              </div>
+            </div>
+          </div>
+          <div style="margin-bottom: 16px; box-sizing: border-box; display: block;">
+            <!-- should disappear when the form is opened -->
+            <button class="btn" (click)="showOrHideEditForm()" [hidden]="showEditForm">Edit profile</button>
+          </div>
+          <div class="flex-order-1 flex-md-order-none mt-2 mt-md-0">
+            <div class="mb-3">
+              <svg text="muted" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16"
+                data-view-component="true" class="octicon octicon-people">
+                <path fill-rule="evenodd"
+                  d="M5.5 3.5a2 2 0 100 4 2 2 0 000-4zM2 5.5a3.5 3.5 0 115.898 2.549 5.507 5.507 0 013.034 4.084.75.75 0 11-1.482.235 4.001 4.001 0 00-7.9 0 .75.75 0 01-1.482-.236A5.507 5.507 0 013.102 8.05 3.49 3.49 0 012 5.5zM11 4a.75.75 0 100 1.5 1.5 1.5 0 01.666 2.844.75.75 0 00-.416.672v.352a.75.75 0 00.574.73c1.2.289 2.162 1.2 2.522 2.372a.75.75 0 101.434-.44 5.01 5.01 0 00-2.56-3.012A3 3 0 0011 4z">
+                </path>
+              </svg>
+              <span class="text-bold color-fg-default">4 offers</span>
+            </div>
+          </div>
+          <ul class="vcard-details">
+            <li class="vcard-detail pt-1 hide-sm hide-md" itemprop="homeLocation" show_title="false"
+              aria-label="Home location: Sofia"><svg class="octicon octicon-location" viewBox="0 0 16 16" version="1.1" width="16"
+                height="16" aria-hidden="true">
+                <path fill-rule="evenodd"
+                  d="M11.536 3.464a5 5 0 010 7.072L8 14.07l-3.536-3.535a5 5 0 117.072-7.072v.001zm1.06 8.132a6.5 6.5 0 10-9.192 0l3.535 3.536a1.5 1.5 0 002.122 0l3.535-3.536zM8 9a2 2 0 100-4 2 2 0 000 4z">
+                </path>
+              </svg>
+              <span class="p-label">Sofia</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </form>
-</section>
+  </div>
+</div>
 
 <!-- test DB connection -->
 <!-- <ul>
