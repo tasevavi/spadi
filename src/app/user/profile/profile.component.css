@@ -2,14 +2,14 @@
     color: #f44336;
 }
 
-.vcard-username {
+.card-username {
     font-size: 20px;
     font-style: normal;
     font-weight: 300;
     line-height: 24px;
 }
 
-.vcard-fullname {
+.card-fullname {
     font-size: 24px;
     line-height: 1.25;
 }
@@ -18,12 +18,9 @@
     overflow: hidden !important;
 }
 
-.d-block {
-    display: block !important;
-}
-
 img {
     border-radius: 50%;
+    height:auto;
 }
 
 .btn {
@@ -41,4 +38,51 @@ img {
     vertical-align: middle;
     cursor: pointer;
     user-select: none;
+}
+
+.profile-column {
+    box-sizing: border-box; 
+    display: block;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex; 
+    flex-direction: column;
+}
+
+.mb0 {
+    margin-bottom: 0;
+}
+
+.center {
+    align-items: center; 
+}
+
+.img-div {
+    display: inline-block;
+    margin-right: 0; 
+    position: relative; 
+    flex-shrink: 0; 
+    width: 100%; 
+    z-index: 4; 
+    box-sizing: border-box;
+}
+
+.sticky {
+    position: sticky;
+}
+
+.container {
+    background-color: #f1f1f1;
+    padding: 16px;
+    border-radius: 15px;
+    text-align: center;
 }

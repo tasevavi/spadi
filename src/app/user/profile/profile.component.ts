@@ -12,6 +12,14 @@ export class ProfileComponent implements OnInit {
   //import the db firebase in another way - check the guide in firebase and refactor initialize app and all imports
   userUID: string = 'cX428KIMg5YhjSscmzOiHFJgGEG3';
   showEditForm: boolean = false;
+  userFirstName: string = 'Violeta'
+  userLastName: string = 'Taseva'
+  userNames: string = this.userFirstName + ' ' + this.userLastName
+  userNickName: string = 'tasevaVi'
+  userCity: string = 'Sofia'
+  userCountry: string = 'Bulgaria'
+  profilePictureSrc: string = "https://avatars.githubusercontent.com/u/87774260?v=4"
+  userPostings: string = '4'
   constructor(private userService: UserService) { }
   
   ngOnInit(): void {
