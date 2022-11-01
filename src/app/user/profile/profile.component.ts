@@ -12,8 +12,8 @@ export class ProfileComponent implements OnInit {
   //import the db firebase in another way - check the guide in firebase and refactor initialize app and all imports
   userUID: string = 'cX428KIMg5YhjSscmzOiHFJgGEG3';
   showEditForm: boolean = false;
-  userFirstName: string = 'Violeta'
-  userLastName: string = 'Taseva'
+  userFirstName: string = ''
+  userLastName: string = ''
   userNames: string = this.userFirstName + ' ' + this.userLastName
   userNickName: string = 'tasevaVi'
   userCity: string = 'Sofia'
@@ -23,12 +23,12 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
   
   ngOnInit(): void {
-    //set all values if they exist
-    //add the values in the edit form and manage where it stands if the user doesnt want to use it
+    //this.userService.getUsers()
+    
   }
 
   getUserInformation() {
-    this.userService.getUserInformation(this.userUID);
+    return this.userService.user;
   }
 
   changeUserInformation(form: NgForm) {

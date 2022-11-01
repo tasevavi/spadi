@@ -15,9 +15,8 @@
           <div class="border-box flex">
             <div class="border-box block" style="order: inherit;">
               <div *ngIf="showEditForm" class="border-box flex">
-                <app-profile-edit-form 
-                  [firstName]="userFirstName" [lastName]="userLastName" [city]="userCity" [country]="userCountry"
-                  (ret)="changeUserInformation($event)">
+                <app-profile-edit-form [firstName]="userFirstName" [lastName]="userLastName" [city]="userCity"
+                  [country]="userCountry" (ret)="changeUserInformation($event)">
                 </app-profile-edit-form>
               </div>
             </div>
@@ -40,8 +39,3 @@
     </div>
   </div>
 </div>
-
-<!-- test DB connection -->
-<!-- <ul>
-    <li *ngFor="let user of users | async">{{user.firstName}}</li>
-  </ul> -->
