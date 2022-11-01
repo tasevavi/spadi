@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { User } from 'firebase/auth';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,23 +9,25 @@ import { UserService } from '../user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  //TODO: find a way to extract uid from url???
-  //import the db firebase in another way - check the guide in firebase and refactor initialize app and all imports
-  userUID: string = 'cX428KIMg5YhjSscmzOiHFJgGEG3';
+  
+  profilePictureSrc: string = "https://avatars.githubusercontent.com/u/87774260?v=4"
   showEditForm: boolean = false;
+  user: User | undefined;
+  userUID: string | undefined;
   userFirstName: string = ''
   userLastName: string = ''
   userNames: string = this.userFirstName + ' ' + this.userLastName
   userNickName: string = 'tasevaVi'
   userCity: string = 'Sofia'
   userCountry: string = 'Bulgaria'
-  profilePictureSrc: string = "https://avatars.githubusercontent.com/u/87774260?v=4"
   userPostings: string = '4'
   constructor(private userService: UserService) { }
   
   ngOnInit(): void {
-    //this.userService.getUsers()
-    
+    this.user = this.getUserInformation();
+    this.userUID = this.user?.uid;
+    console.log('onInit in profile component-user:', this.user)
+    //const currentUser = this.userService.findUserByUid(this.userUID);
   }
 
   getUserInformation() {

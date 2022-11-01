@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from 'firebase/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from 'firebase/auth';
+import { collection, addDoc, doc, getDoc, query, where } from "firebase/firestore"; 
 import { environment } from "src/environments/environment";
+import { db } from 'src/main';
 
 const apiURL = environment.apiURL; 
 
@@ -11,8 +13,9 @@ const apiURL = environment.apiURL;
 })
 export class UserService {
 
-  redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'] || '/';
   auth = getAuth();
+  redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'] || '/';
+  uid: string | undefined;
   user: User | undefined;
 
   constructor(
@@ -64,6 +67,7 @@ export class UserService {
 
     createUserWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
+        this.uid = userCredential.user.uid;
         return this.firestore.collection('users')
           .doc(userCredential.user.uid)
           .set({email: email});
@@ -100,14 +104,31 @@ export class UserService {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        // ...
+        this.uid = user.uid;
       } else {
         // User is signed out
         // ...
       }
     });
   }
+
+  //Add user to DB
+  async addNewUserToDB() {
+    try {
+      const docRef = await addDoc(collection(db, 'users'), {
+        email: this.user?.email, 
+        firstName: null, 
+        lastName: null, 
+        locationCity: null
+      });
+      console.log('Document written with ID: ', docRef.id);
+    } catch (e) {
+      console.error('Error adding document: ', e);
+    }
+  }
+
+  //TODO: Find user by UID in DB
+  
 }
 
 //All erased functions that can help me for the DB and the posts of the users:
