@@ -10,8 +10,8 @@ export class ProfileEditFormComponent implements OnInit {
 
   @Input() firstName: string = '';
   @Input() lastName: string = '';
+  @Input() nickName: string = '';
   @Input() city: string = '';
-  @Input() country: string = '';
 
   @Output() ret: EventEmitter<NgForm> = new EventEmitter<NgForm>();
 
