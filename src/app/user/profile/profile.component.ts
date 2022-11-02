@@ -36,13 +36,13 @@ export class ProfileComponent implements OnInit {
   }
 
   changeUserInformation(form: NgForm) {
-    console.log('changeUserInformation in profile component:', form);
     if (form.invalid) { 
-      //TODO remove in the end -> only for debugging
-      console.log('invalid form');
+      console.log('Invalid form!')
       return; 
     }
+    this.userService.editUserProfileInformation(this.userUID, form);
     this.showOrHideEditForm();
+    this.setCurrentUserInformation();
   }
 
   showOrHideEditForm() {

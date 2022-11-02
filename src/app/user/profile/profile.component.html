@@ -16,7 +16,7 @@
             <div class="border-box block" style="order: inherit;">
               <div *ngIf="showEditForm" class="border-box flex">
                 <app-profile-edit-form [firstName]="user.firstName" [lastName]="user.lastName" [nickName]="user.nickName"
-                  [city]="user.locationCity" (ret)="changeUserInformation($event)">
+                  [locationCity]="user.locationCity" (ret)="changeUserInformation($event)">
                 </app-profile-edit-form>
               </div>
             </div>
