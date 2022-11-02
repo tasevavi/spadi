@@ -8,15 +8,15 @@
           </div>
           <div data-original-top="0px" class="sticky">
             <h1 class="card-names">
-              <span class="card-fullname block overflow-hidden" itemprop="userNames" [innerText]="userNames"></span>
-              <span class="card-username block" itemprop="userNickName" [innerText]="userNickName"></span>
+              <span class="card-fullname block overflow-hidden" itemprop="userNames" [innerText]="user.firstName + ' ' + user.lastName"></span>
+              <span class="card-username block" itemprop="userNickName" [innerText]="user.nickName"></span>
             </h1>
           </div>
           <div class="border-box flex">
             <div class="border-box block" style="order: inherit;">
               <div *ngIf="showEditForm" class="border-box flex">
-                <app-profile-edit-form [firstName]="userFirstName" [lastName]="userLastName" [nickName]="userNickName"
-                  [city]="userCity" (ret)="changeUserInformation($event)">
+                <app-profile-edit-form [firstName]="user.firstName" [lastName]="user.lastName" [nickName]="user.nickName"
+                  [city]="user.locationCity" (ret)="changeUserInformation($event)">
                 </app-profile-edit-form>
               </div>
             </div>
@@ -27,11 +27,11 @@
           <div class="container" *ngIf="!showEditForm">
             <div>
               <span style="display: inline-block;" class="material-icons">card_giftcard</span>
-              <p>Donations made: {{userPostings}}</p>
+              <p>Donations made: {{user.postings}}</p>
             </div>
             <div>
               <span style="display: inline-block;" class="material-icons">room</span>
-              <p>Location: {{userCity}}</p>
+              <p>Location: {{user.locationCity}}</p>
             </div>
           </div>
         </div>
