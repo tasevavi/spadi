@@ -130,74 +130,17 @@ export class UserService {
 
   //Find user by UID in DB
   async findUserByUid(uid: any) {
-    const docRef = doc(db, "users", uid);
+    const docRef = doc(db, 'users', uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      console.log('Document data:', docSnap.data());
       return docSnap.data();
     } else {
       // doc.data() will be undefined in this case
-      console.log("No such document!");
+      console.log('No such document!');
       return undefined;
     }
   }
 
 }
-
-//All erased functions that can help me for the DB and the posts of the users:
-
-  // initFirebaseAuth() {
-  //   onAuthStateChanged(getAuth(), this.authStateObserver);
-  // }
-
-  // authStateObserver(user: any) {
-  //   if (user) {
-  //     const profilePicture = this.getProfilePicUrl();
-  //     const userName = this.getUserName();
-  //   } else {
-  //     //user is not logged in
-  //   }
-  // }
-
-  // async getUsers() {
-  //   const usersCol = collection(db, 'users');
-  //   const usersSnapshot = await getDocs(usersCol);
-  //   const userList = usersSnapshot.docs.map(doc => doc.data());
-  //   console.log('getUsers from userService:', userList)
-  //   return userList;
-  // }
-
-  // getProfilePicUrl() {
-  //   return getAuth().currentUser?.photoURL || '/assets/profile-placeholder.png';
-  // }
-
-  // getUserName() {
-  //   return getAuth().currentUser?.displayName || 'guest';
-  // }
-
-  // async setUserName(email: string, firstName: string, lastName: string, userUID: string) {
-  //   const usersReference = this.firestore.collection('users');
-  //   await usersReference.doc(userUID).set({
-  //     email: email,
-  //     firstName: firstName, 
-  //     lastName: lastName
-  //   });
-  // }
-
-  // getUsersFromDatabase(): Observable<any[]> {
-  //   const users: Observable<any[]> = this.firestore.collection('users').valueChanges();
-  //   return users;
-  // }
-
-  // getUserInformation(userUID: string) {
-  //   //this is repeated code -> refactor and move to the top
-  //   const usersReference = this.firestore.collection('users');
-  //   //const queryReference = usersReference.where('id', '==', userUID);
-  // }
-
-  
-// <!-- test DB connection -->
-// <!-- <ul>
-//     <li *ngFor="let user of users | async">{{user.firstName}}</li>
-//   </ul> -->
