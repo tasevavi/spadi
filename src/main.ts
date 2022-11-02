@@ -5,10 +5,10 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
+import { getFirestore } from 'firebase/firestore';
 
 const app = initializeApp(environment.firebaseConfig);
-export const db = getFirestore(app);
+const db = getFirestore(app);
 
 if (environment.production) {
   enableProdMode();
@@ -16,3 +16,5 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+export { db }
