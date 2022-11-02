@@ -64,18 +64,20 @@ export class UserService {
     });
   }
 
-  registerUserWithEmailAndPassword(email: string, password: string) {
+  registerUserWithEmailAndPassword(email: string, password: string, firstName: string, lastName: string) {
 
     createUserWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
         this.uid = userCredential.user.uid;
         return this.firestore.collection('users')
           .doc(userCredential.user.uid)
-          .set({email: email});
+          .set({email: email, firstName: firstName, lastName: lastName});
       })
       .then(() => {
         // Registered, signed in and added to DB collection 'users'
-        this.router.navigate([this.redirectUrl]);
+        this.router.navigate(['users/profile'], { queryParams: {
+          id: this.uid
+        }});
       })
       .catch((error) => {
         const errorCode = error.code;

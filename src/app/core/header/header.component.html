@@ -18,7 +18,7 @@
                 <a routerLink="/search"><mat-icon>search</mat-icon></a> 
             </span>
             <span class="icon">
-                <a routerLink="/users/:id"><mat-icon>account_circle</mat-icon></a> 
+                <a (click)="navigateToProfile()"><mat-icon>account_circle</mat-icon></a> 
             </span>
             <span class="icon">
                 <a (click)="logout()"><mat-icon>logout</mat-icon></a> 

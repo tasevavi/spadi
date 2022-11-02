@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'firebase/auth';
 import { UserInformation } from 'src/app/types/userInformation';
 import { UserService } from '../user.service';
@@ -17,19 +18,32 @@ export class ProfileComponent implements OnInit {
   user: any = new UserInformation()
   userUID: string | undefined;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService, 
+    private route: ActivatedRoute
+  ) { }
   
   ngOnInit(): void {
-    this.currentUser = this.userService.user;
-    this.userUID = this.currentUser?.uid;
-    this.setCurrentUserInformation();
+    this.route.queryParams.subscribe(data => {
+      if (data['id'] !== undefined) {
+        this.userUID = data['id']
+      } else {
+        this.currentUser = this.userService.user;
+        this.userUID = this.currentUser?.uid;
+      }
+      if (this.userUID !== undefined) {
+        this.setCurrentUserInformation();
+      }
+    })
   }
 
   setCurrentUserInformation() {
     this.userService.findUserByUid(this.userUID).then(data => {
       if (data !== undefined) {
         Object.keys(data).forEach(key => {
-          this.user[key] = data[key];
+          if (key !== undefined) {
+            this.user[key] = data[key];
+          }
         });
       }
     });

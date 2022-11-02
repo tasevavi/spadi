@@ -23,6 +23,20 @@
                 <p *ngIf="rePasswordlInput.errors?.['required']" class="error">Repeat password is required</p>
                 <p *ngIf="rePasswordlInput.errors?.['minlength']" class="error">Repeat password should be at least 6 characters long</p>
             </ng-container>
+
+            <label for="firstName">Name</label>
+            <input id="firstName" type="text" name="firstName" #firstNameInput="ngModel" ngModel required [minlength]="4" placeholder="First Name">
+            <ng-container *ngIf="firstNameInput.touched">
+                <p *ngIf="firstNameInput.errors?.['required']" class="error">First Name is required</p>
+                <p *ngIf="firstNameInput.errors?.['minlength']" class="error">First Name should be at least 4 characters long</p>
+            </ng-container>
+
+            <label for="lastName">Last Name</label>
+            <input id="lastName" type="text" name="lastName" #lastNameInput="ngModel" ngModel required [minlength]="4" placeholder="Last Name">
+            <ng-container *ngIf="lastNameInput.touched">
+                <p *ngIf="lastNameInput.errors?.['required']" class="error">Last Name is required</p>
+                <p *ngIf="lastNameInput.errors?.['minlength']" class="error">Last Name should be at least 4 characters long</p>
+            </ng-container>
             
             <input type="submit" class="registerbtn button" value="Register">
 

@@ -15,7 +15,7 @@ export class RegisterComponent {
 
   register(form: NgForm) {
     if (form.invalid) { return; }
-    const { email, password, rePassword } = form.value;
-    this.userService.registerUserWithEmailAndPassword(email, password)
+    const { email, password, rePassword, firstName, lastName } = form.value;
+    this.userService.registerUserWithEmailAndPassword(email, password, firstName, lastName)
   }
 }

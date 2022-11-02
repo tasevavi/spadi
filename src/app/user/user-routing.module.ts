@@ -29,7 +29,7 @@ const routes: Routes = [
                 }
             },
             {
-                path: ':id',
+                path: 'profile',
                 component: ProfileComponent,
                 //canActivate: [AuthActivate],
                 data: {
