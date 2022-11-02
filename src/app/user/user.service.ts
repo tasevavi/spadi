@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from 'firebase/auth';
-import { collection, addDoc, doc, getDoc, query, where } from "firebase/firestore"; 
+import { collection, addDoc, doc, getDoc } from "firebase/firestore"; 
 import { environment } from "src/environments/environment";
 import { db } from 'src/main';
 
@@ -119,6 +119,7 @@ export class UserService {
         email: this.user?.email, 
         firstName: null, 
         lastName: null, 
+        nickName: null,
         locationCity: null
       });
       console.log('Document written with ID: ', docRef.id);
@@ -127,8 +128,21 @@ export class UserService {
     }
   }
 
-  //TODO: Find user by UID in DB
-  
+  //Find user by UID in DB
+  async findUserByUid(uid: any) {
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      return docSnap.data();
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+      return undefined;
+    }
+  }
+
 }
 
 //All erased functions that can help me for the DB and the posts of the users:

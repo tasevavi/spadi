@@ -14,24 +14,27 @@ export class ProfileComponent implements OnInit {
   showEditForm: boolean = false;
   user: User | undefined;
   userUID: string | undefined;
-  userFirstName: string = ''
-  userLastName: string = ''
-  userNames: string = this.userFirstName + ' ' + this.userLastName
-  userNickName: string = 'tasevaVi'
-  userCity: string = 'Sofia'
-  userCountry: string = 'Bulgaria'
+  userFirstName: string = '';
+  userLastName: string = '';
+  userNames: string = '';
+  userNickName: string = '';
+  userCity: string = '';
   userPostings: string = '4'
   constructor(private userService: UserService) { }
   
   ngOnInit(): void {
-    this.user = this.getUserInformation();
+    this.user = this.userService.user;
     this.userUID = this.user?.uid;
-    console.log('onInit in profile component-user:', this.user)
-    //const currentUser = this.userService.findUserByUid(this.userUID);
+    this.setCurrentUserInformation();
   }
 
-  getUserInformation() {
-    return this.userService.user;
+  async setCurrentUserInformation() {
+    const currentUserPromise = await this.userService.findUserByUid(this.userUID);
+    this.userFirstName = currentUserPromise != undefined ? currentUserPromise['firstName'] : '';
+    this.userLastName = currentUserPromise != undefined ? currentUserPromise['lastName'] : '';
+    this.userNames = this.userFirstName + ' ' + this.userLastName;
+    this.userNickName = currentUserPromise != undefined ? currentUserPromise['nickName'] : '';
+    this.userCity = currentUserPromise != undefined ? currentUserPromise['locationCity'] : '';
   }
 
   changeUserInformation(form: NgForm) {
