@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from 'firebase/auth';
-import { collection, addDoc, doc, getDoc } from "firebase/firestore"; 
+import { collection, addDoc, doc, getDoc, setDoc } from "firebase/firestore"; 
 import { environment } from "src/environments/environment";
 import { db } from 'src/main';
+import { NgForm } from '@angular/forms';
 
 const apiURL = environment.apiURL; 
 
@@ -134,13 +135,19 @@ export class UserService {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
+      // console.log('Document data:', docSnap.data());
       return docSnap.data();
     } else {
       // doc.data() will be undefined in this case
-      console.log('No such document!');
+      // console.log('No such document!');
       return undefined;
     }
+  }
+
+  //Edit user profile information
+  editUserProfileInformation(uid: any, form: NgForm) {
+    const userRef = doc(db, 'users', uid);
+    setDoc(userRef, form, { merge: true });
   }
 
 }
