@@ -14,4 +14,4 @@ export class UserInformation {
     }
 }
 
-//TODO: add an array of postings and donations made
+//TODO: delete this! I have it in interfaces!

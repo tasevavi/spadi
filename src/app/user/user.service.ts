@@ -30,11 +30,20 @@ export class UserService {
     return !!getAuth().currentUser;
   }
 
+  getUser() {
+    return this.user;
+  }
+
+  getUserUid() {
+    return this.uid;
+  }
+
   loginUserWithEmailAndPassword(email: string, password: string) {
     
     signInWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => { // Signed in 
         this.user = userCredential.user;
+        this.uid = this.user.uid;
         this.router.navigate([this.redirectUrl]);
       })
       .catch((error) => {
@@ -51,9 +60,12 @@ export class UserService {
         // This gives you a Google Access Token. You can use it to access the Google API
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
-        // The signed-in user info
         this.user = result.user;
-        //TODO: save user info in DB + check if such user exists and don't save it
+        this.uid = this.user.uid;
+        let checkUserExists = this.findUserByUid(this.uid);
+        if (checkUserExists === undefined) {
+          this.addNewUserToDB();
+        }
         this.router.navigate([this.redirectUrl]);
       }).catch((error) => {
         const errorCode = error.code;
@@ -68,6 +80,7 @@ export class UserService {
 
     createUserWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
+        this.user = userCredential.user;
         this.uid = userCredential.user.uid;
         return this.firestore.collection('users')
           .doc(userCredential.user.uid)
@@ -122,10 +135,10 @@ export class UserService {
         email: this.user?.email, 
         firstName: null, 
         lastName: null, 
-        nickName: null,
+        nickName: this.user?.displayName,
         locationCity: null
       });
-      console.log('Document written with ID: ', docRef.id);
+      //console.log('Document written with ID: ', docRef.id);
     } catch (e) {
       console.error('Error adding document: ', e);
     }
