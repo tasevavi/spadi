@@ -13,7 +13,7 @@ import { UserService } from '../user.service';
 export class ProfileComponent implements OnInit {
   
   currentUser: User | undefined;
-  profilePictureSrc: string = "https://avatars.githubusercontent.com/u/87774260?v=4"
+  profilePictureSrc: string = ''; //TODO: add logic to load from DB
   showEditForm: boolean = false;
   user: any = new UserInformation()
   userUID: string | undefined;
@@ -35,6 +35,10 @@ export class ProfileComponent implements OnInit {
         this.setCurrentUserInformation();
       }
     })
+
+    if (this.profilePictureSrc === '') {
+      this.profilePictureSrc = '../../../assets/blank-profile-pic.png';
+    }
   }
 
   setCurrentUserInformation() {
