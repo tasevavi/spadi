@@ -10,6 +10,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserService } from './user.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.
   ],
   imports: [
     CommonModule,
-    // SharedModule, 
+    SharedModule, 
     UserRoutingModule, 
     FormsModule,
     MatIconModule,

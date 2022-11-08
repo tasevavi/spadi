@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   currentUser: User | undefined;
   profilePictureSrc: string = "https://avatars.githubusercontent.com/u/87774260?v=4"
   showEditForm: boolean = false;
+  showEditProfilePictureForm: boolean = false;
   user: any = new UserInformation()
   userUID: string | undefined;
 
@@ -63,4 +64,16 @@ export class ProfileComponent implements OnInit {
     this.showEditForm = !this.showEditForm;
   }
 
+  changeUserPhoto(event: any) {
+
+    this.showOrHideEditProfilePictureForm();
+  }
+
+  openEditProfilePictureForm() {
+    this.showEditProfilePictureForm = true;
+  }
+
+  showOrHideEditProfilePictureForm() {
+    this.showEditProfilePictureForm = !this.showEditProfilePictureForm;
+  }
 }

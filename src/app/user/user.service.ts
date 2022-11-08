@@ -16,7 +16,7 @@ export class UserService {
 
   auth = getAuth();
   redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'] || '/';
-  uid: string | undefined;
+  uid: string = '';
   user: User | undefined;
 
   constructor(

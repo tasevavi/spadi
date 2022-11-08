@@ -6,9 +6,11 @@ import { environment } from './environments/environment';
 
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage'
 
 const app = initializeApp(environment.firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 if (environment.production) {
   enableProdMode();
@@ -17,4 +19,4 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-export { db }
+export { db, storage }
