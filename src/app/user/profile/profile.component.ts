@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'firebase/auth';
-import { UserInformation } from 'src/app/types/userInformation';
 import { UserService } from '../user.service';
 
 @Component({
@@ -13,9 +12,10 @@ import { UserService } from '../user.service';
 export class ProfileComponent implements OnInit {
   
   currentUser: User | undefined;
-  profilePictureSrc: string = ''; //TODO: add logic to load from DB
+  //TODO: add logic to load from DB
+  profilePictureSrc: string = ''; 
   showEditForm: boolean = false;
-  user: any = new UserInformation()
+  user: any
   userUID: string | undefined;
 
   constructor(
