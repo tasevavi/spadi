@@ -55,7 +55,6 @@ export class ProfileComponent implements OnInit {
 
   changeUserInformation(form: NgForm) {
     if (form.invalid) { 
-      console.log('Invalid form!')
       return; 
     }
     this.userService.editUserProfileInformation(this.userUID, form);

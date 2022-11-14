@@ -23,7 +23,6 @@ export class ProfileEditFormComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      console.log('form values from profile-edit-form:', form.value);
       this.ret.emit(form.value);
     }
   }

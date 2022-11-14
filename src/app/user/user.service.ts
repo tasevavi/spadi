@@ -123,7 +123,7 @@ export class UserService {
         this.uid = user.uid;
       } else {
         // User is signed out
-        // ...
+        this.router.navigate(['/']);
       }
     });
   }
@@ -138,7 +138,6 @@ export class UserService {
         nickName: this.user?.displayName,
         locationCity: null
       });
-      //console.log('Document written with ID: ', docRef.id);
     } catch (e) {
       console.error('Error adding document: ', e);
     }
@@ -150,11 +149,8 @@ export class UserService {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      // console.log('Document data:', docSnap.data());
       return docSnap.data();
     } else {
-      // doc.data() will be undefined in this case
-      // console.log('No such document!');
       return undefined;
     }
   }
