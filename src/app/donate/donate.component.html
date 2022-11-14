@@ -1,0 +1,43 @@
+<section id="donate">
+    <form #form="ngForm" method="POST" (ngSubmit)="post(form)" id="donate-form">
+        <div class="container">
+            <h1>Make a donation now!</h1>
+
+            <label for="postTitle">Title</label>
+            <input #postTitleInput="ngModel" ngModel id="postTitle" type="text" name="postTitle" placeholder="Enter a title" required postTitle>
+            <ng-container *ngIf="postTitleInput.touched">
+                <p *ngIf="postTitleInput.errors?.['required']" class="error">Title is required</p>
+            </ng-container>
+
+            <label for="description">Description</label>
+            <input id="description" type="text" name="description" #descriptionInput="ngModel" ngModel required [minlength]="10" placeholder="Enter description here">
+            <ng-container *ngIf="descriptionInput.touched">
+                <p *ngIf="descriptionInput.errors?.['required']" class="error">Description is required</p>
+                <p *ngIf="descriptionInput.errors?.['minlength']" class="error">Description should be at least 10 characters long</p>
+            </ng-container>
+
+            <label for="category">Category</label>
+            <app-dropdown
+                [name]="dropdownName"
+                [title]="dropdownTitle"
+                [value]="dropdownTitle"
+                [data]="categoriesData"
+                (onChange)="onSelectCategory($event)">
+            </app-dropdown>
+
+            <label for="contactInformation">Contact for details</label>
+            <input id="contactInformation" type="text" name="contactInformation" #contactInformationInput="ngModel" ngModel required [minlength]="5" placeholder="Enter phone number">
+            <ng-container *ngIf="contactInformationInput.touched">
+                <p *ngIf="contactInformationInput.errors?.['required']" class="error">Contact info is required</p>
+                <p *ngIf="contactInformationInput.errors?.['minlength']" class="error">Contact info should be at least 5 characters long</p>
+            </ng-container>
+
+            <label for="postPhoto">Upload a photo</label>
+            <input id="postPhoto" type="text" name="postPhoto" #postPhotoInput="ngModel" ngModel required placeholder="Upload photo here">
+            <ng-container *ngIf="postPhotoInput.touched">
+                <p *ngIf="postPhotoInput.errors?.['required']" class="error">A photo is required</p>
+            </ng-container>       
+            <input type="submit" class="submitbtn button" value="Submit">
+        </div>
+    </form>
+</section>

@@ -16,11 +16,15 @@ import { HomeComponent } from './home/home.component';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from './user/user.module';
+import { DonateComponent } from './donate/donate.component';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    DonateComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,8 @@ import { UserModule } from './user/user.module';
     BrowserAnimationsModule, 
     CoreModule, 
     UserModule,
+    FormsModule, 
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
