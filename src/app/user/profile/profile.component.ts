@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'firebase/auth';
-import { UserService } from '../user.service';
+import { UserService } from '../../services/user.service';
 import { CurrentUser } from '../../types/currentUser';
 
 @Component({

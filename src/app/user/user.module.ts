@@ -7,7 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 //import { SharedModule } from '../shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
-import { UserService } from './user.service';
+import { UserService } from '../services/user.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.component';
 
