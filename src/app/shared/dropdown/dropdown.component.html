@@ -1,0 +1,12 @@
+<select 
+    class="dropdown"
+    [name]="name" 
+    [(ngModel)]="selectedValue"
+    (change)="onChange()">
+    <option selected>{{title}}</option>
+    <option *ngFor="let i of data"
+        [ngValue]="i"
+        [selected]="selectedValue === i">
+        {{i}}
+    </option>
+</select>
