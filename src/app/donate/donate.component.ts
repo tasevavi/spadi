@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { PostsService } from '../services/posts.service';
+import { UserService } from '../services/user.service';
 import { DonationPost } from '../types/donationPost';
 
 
@@ -10,13 +12,18 @@ import { DonationPost } from '../types/donationPost';
 })
 export class DonateComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userService: UserService, 
+    private postsService: PostsService
+  ) { }
+
   categoriesData = ['books', 'clothes', 'cosmetics', 'cutlery', 'food', 'games', 'home', 'shoes', 'tech', 'time', 'other'];
   dropdownName = 'categoryDonation';
   selectedCategory: string = '';
-  donationPost: DonationPost = { postTitle: '', description: '', category: '', contact: '', photo: '' };
+  donationPost: DonationPost = { postTitle: '', description: '', category: '', contact: '', photo: '', userIUD: '' };
 
   ngOnInit(): void {
+    this.donationPost.userIUD = this.userService.getUserUid();
   }
 
   onSelectCategory(value: any): void {
@@ -31,7 +38,6 @@ export class DonateComponent implements OnInit {
     this.donationPost.contact = contactInformation;
     this.donationPost.photo = postPhoto;
     this.donationPost.category = this.selectedCategory;
-    console.log(this.donationPost);
-    // this.userService.registerUserWithEmailAndPassword(email, password, firstName, lastName)
+    this.postsService.addNewPostToDB(this.donationPost);
   }
 }

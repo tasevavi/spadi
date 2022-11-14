@@ -4,4 +4,5 @@ export interface DonationPost {
     category: string; 
     contact: string; 
     photo: string;
+    userIUD: string | undefined;
 }
