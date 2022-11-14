@@ -19,10 +19,9 @@
             <label for="category">Category</label>
             <app-dropdown
                 [name]="dropdownName"
-                [title]="dropdownTitle"
-                [value]="dropdownTitle"
+                [value]="selectedCategory"
                 [data]="categoriesData"
-                (onChange)="onSelectCategory($event)">
+                (ret)="onSelectCategory($event)">
             </app-dropdown>
 
             <label for="contactInformation">Contact for details</label>

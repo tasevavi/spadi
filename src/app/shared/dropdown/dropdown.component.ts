@@ -9,11 +9,11 @@ export class DropdownComponent implements OnInit {
 
   @Input() data: string[] = [];
   @Input() name: string = '';
-  @Input() title: string = '';
   @Input() value: string = '';
   @Output() ret: EventEmitter<string> = new EventEmitter<string>();
 
   selectedValue: string = '';
+  title: string = 'Select Category';
 
   constructor() { }
 
@@ -27,11 +27,7 @@ export class DropdownComponent implements OnInit {
   onChange(): void {
     if (this.selectedValue !== this.title) {
       this.ret.emit(this.selectedValue);
-    } else {
-      this.ret.emit(undefined);
-    }
-
-    this.selectedValue ??= this.title;
+    } 
   }
 
   reset(): void {
