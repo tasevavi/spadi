@@ -1,0 +1,27 @@
+<section id="catalog">
+    <div class="container">
+        <h1>Browse Donations</h1>
+        <div>
+            <mat-card class="card" *ngFor="let post of allPosts" style="display: inline-block; margin: 5px;">
+                <mat-card-header>
+                    <div mat-card-avatar class="header-image"></div>
+                    <mat-card-title>{{post.value.postTitle}}</mat-card-title>
+                    <mat-card-subtitle>{{post.value.category}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-lg-image src="../../assets/donation-img.jpg" alt="Photo of donated item">
+                <mat-card-content>
+                    <p *ngIf="post.value.description.length > 40"
+                        [innerHTML]="post.value.description.slice(0,40) + '...'"></p>
+                    <p *ngIf="post.value.description.length < 40">{{post.value.description}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button class="requestbtn">REQUEST</button>
+                </mat-card-actions>
+            </mat-card> 
+        </div>
+    </div>
+</section>
+<mat-spinner
+    *ngIf="spinner"
+    [diameter]="250">
+</mat-spinner>
