@@ -32,3 +32,10 @@
     padding: 16px;
     text-align: center;
 }
+
+.mat-spinner {
+    position: relative;
+    margin-left: 50%;
+    margin-right: 50%;
+    stroke: #f44336!important
+}
