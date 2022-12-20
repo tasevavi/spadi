@@ -19,12 +19,16 @@ import { UserModule } from './user/user.module';
 import { DonateComponent } from './donate/donate.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { CatalogComponent } from './catalog/catalog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DonateComponent
+    DonateComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import { SharedModule } from './shared/shared.module';
     CoreModule, 
     UserModule,
     FormsModule, 
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule, 
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

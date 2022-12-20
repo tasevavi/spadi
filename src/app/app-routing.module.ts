@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CatalogComponent } from './catalog/catalog.component';
 import { DonateComponent } from './donate/donate.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
@@ -13,6 +14,15 @@ const routes: Routes = [
   {
     path: 'donate', 
     component: DonateComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authenticationRequired: true,
+      authenticationFailureRedirectUrl: '/login',
+    }
+  }, 
+  {
+    path: 'catalog', 
+    component: CatalogComponent,
     canActivate: [AuthGuard],
     data: {
       authenticationRequired: true,
