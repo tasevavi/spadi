@@ -12,7 +12,7 @@
     <div class="sidenav-message-container">
         <h2>How to donate in 3 easy steps?</h2>
         <p>1.Log in <a routerLink="/users/:id">your profile</a></p>
-        <p>2.Click <a routerLink="/post">Donate now</a></p>
+        <p>2.Click <a routerLink="/donate">Donate now</a></p>
         <p>3.Add the items you want to donate and write a short description</p>
         <p>Congratulations! You just made a small difference for someone who needs it!</p>
     </div>
@@ -44,7 +44,7 @@
         <p>1.Is it clean, without stains or holes?</p>
         <p>2.Is it still whole and good to wear?</p>
         <p>3.Ask yourself - would you like to wear it or would you like your kid to wear it?</p>
-        <p>If all 3 answers are "yes", then you're good to go - <a routerLink="/post">donate now!</a></p>
+        <p>If all 3 answers are "yes", then you're good to go - <a routerLink="/donate">donate now!</a></p>
     </div>
 </div>
 <div id="sidenav-right" class="sidenav-right">
@@ -52,7 +52,7 @@
     <div class="sidenav-message-container">
         <h2>How to donate in 3 easy steps?</h2>
         <p>1.Log in <a routerLink="/users/:id">your profile</a></p>
-        <p>2.Click <a routerLink="/post">Donate now</a></p>
+        <p>2.Click <a routerLink="/donate">Donate now</a></p>
         <p>3.Add the items you want to donate and write a short description</p>
         <p>Congratulations! You just made a small difference for someone who needs it!</p>
     </div>
@@ -84,14 +84,14 @@
         <p>1.Is it clean, without stains or holes?</p>
         <p>2.Is it still whole and good to wear?</p>
         <p>3.Ask yourself - would you like to wear it or would you like your kid to wear it?</p>
-        <p>If all 3 answers are "yes", then you're good to go - <a routerLink="/post">donate now!</a></p>
+        <p>If all 3 answers are "yes", then you're good to go - <a routerLink="/donate">donate now!</a></p>
     </div>
 </div>
 <main>
     <ng-container *ngIf="isLoggedIn()">
         <div class="message-container">
             <p>Check all donated items in the <a routerLink="/catalog">catalog</a>.</p>
-            <p>Do you want to donate something? Post it <a routerLink="/post">here</a>.</p>
+            <p>Do you want to donate something? Post it <a routerLink="/donate">here</a>.</p>
         </div>
     </ng-container>
     <ng-container *ngIf="!isLoggedIn()">

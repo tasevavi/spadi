@@ -25,7 +25,7 @@ export class PostsService {
         photo: donationPost.photo,
         userIUD: donationPost.userIUD
       });
-      this.router.navigate(['users/profile'], { queryParams: {
+      this.router.navigate(['/catalog'], { queryParams: {
         id: donationPost.userIUD
       }});
     } catch (e) {
@@ -35,15 +35,18 @@ export class PostsService {
 
   //Get user posts by userId
   async getUserPosts(uid: any) {
+    const posts: any = [];
     try {
       const q = query(collection(db, 'posts'), where('userIUD', '==', uid));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        //console.log(doc.id, " => ", doc.data());
+        const post = {key: doc.id, value: doc.data()};
+        posts.push(post);
       });
     } catch (e) {
       console.error('Error getting document: ', e);
     }
+    return posts;
   }
 
   //Get all posts for the catalog page

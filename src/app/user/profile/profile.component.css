@@ -40,9 +40,12 @@ img {
     user-select: none;
 }
 
-.profile-column {
+.profile-column-block {
+    position: absolute;
     box-sizing: border-box; 
     display: block;
+    margin-top: 30px;
+    margin-left: 10px;
 }
 
 .border-box {
@@ -85,4 +88,29 @@ img {
     padding: 16px;
     border-radius: 15px;
     text-align: center;
+}
+
+.card {
+    width: 350px;
+    display: inline-block;
+    margin: 5px;
+}
+  
+.header-image {
+    background-image: url('../../../assets/blank-profile-pic.png');
+    background-size: cover;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+.second-column {
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    text-align: center;
+    grid-column: 2; 
+    display: inline-block; 
+    margin: 5px; 
+    margin-left: 300px;
 }

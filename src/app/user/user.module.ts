@@ -10,6 +10,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserService } from '../services/user.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.
     UserRoutingModule, 
     FormsModule,
     MatIconModule,
+    MatCardModule
   ],
   providers: [
     UserService

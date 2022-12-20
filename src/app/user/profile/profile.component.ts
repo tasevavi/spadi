@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'firebase/auth';
+import { PostsService } from 'src/app/services/posts.service';
 import { UserService } from '../../services/user.service';
 import { CurrentUser } from '../../types/currentUser';
 
@@ -13,15 +14,16 @@ import { CurrentUser } from '../../types/currentUser';
 export class ProfileComponent implements OnInit {
   
   currentUser: User | undefined;
-  //TODO: add logic to load from DB
   profilePictureSrc: string = ''; 
   showEditForm: boolean = false;
   user: any = new CurrentUser();
   userUID: string | undefined;
+  userPosts: any;
 
   constructor(
     private userService: UserService, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute, 
+    private postsService: PostsService
   ) { }
   
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class ProfileComponent implements OnInit {
         this.userUID = this.currentUser?.uid;
       }
       if (this.userUID !== undefined) {
+        this.getUserPosts();
         this.setCurrentUserInformation();
       }
     })
@@ -42,8 +45,18 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  getUserPosts() {
+    this.postsService.getUserPosts(this.userUID)
+    .then(posts => {
+      if (posts !== undefined) {
+        this.userPosts = posts;
+      }
+    })
+  }
+
   setCurrentUserInformation() {
-    this.userService.findUserByUid(this.userUID).then(data => {
+    this.userService.findUserByUid(this.userUID)
+    .then(data => {
       if (data !== undefined) {
         Object.keys(data).forEach(key => {
           if (key !== undefined) {
@@ -67,4 +80,10 @@ export class ProfileComponent implements OnInit {
     this.showEditForm = !this.showEditForm;
   }
 
+  hasNoPosts(): boolean {
+    if (this.userPosts !== undefined) {
+      return this.userPosts.length > 0 ? false : true;
+    }
+    return true;
+  }
 }

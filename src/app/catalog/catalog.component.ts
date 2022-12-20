@@ -17,7 +17,8 @@ export class CatalogComponent implements OnInit {
   }
 
   getPosts() {
-    return this.postsService.getAllPosts().then(posts => {
+    return this.postsService.getAllPosts()
+    .then(posts => {
       this.allPosts = posts;
       this.spinner = false;
     });
