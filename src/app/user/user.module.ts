@@ -12,7 +12,6 @@ import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.
 import { MatCardModule } from '@angular/material/card';
 import { DonationEditFormComponent } from './donation-edit-form/donation-edit-form.component';
 import { SharedModule } from "../shared/shared.module";
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -32,8 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         FormsModule,
         MatIconModule,
         MatCardModule,
-        SharedModule, 
-        MatProgressSpinnerModule
+        SharedModule,
     ]
 })
 export class UserModule { }
