@@ -50,6 +50,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=number]:focus, input
     background-color: white;
     position: absolute;
     margin-left: 1px;
+    margin-top: -5px;
     width: 40px;
     height: 40px;
     border-radius: 2px;
