@@ -75,4 +75,8 @@ export class DonationEditFormComponent implements OnInit {
       id: this.uid
     }});
   }
+
+  deletePost() {
+    console.log('delete this')
+  }
 }

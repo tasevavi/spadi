@@ -67,6 +67,7 @@
                 <p *ngIf="postPhotoInput.errors?.['required']" class="error">A photo is required</p>
             </ng-container>       
             <input type="submit" class="submitbtn button" value="Submit">
+            <button class="deletebtn" (click)="deletePost()">Delete</button>
         </div>
     </form>
 </section>
