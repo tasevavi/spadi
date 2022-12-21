@@ -14,6 +14,7 @@ export class ProfileEditFormComponent implements OnInit {
   @Input() locationCity: string = '';
 
   @Output() ret: EventEmitter<NgForm> = new EventEmitter<NgForm>();
+  @Output() showEditForm: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
   constructor() { }
@@ -21,10 +22,13 @@ export class ProfileEditFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(form: NgForm) {
+  cancelEditProfile(): void {
+    this.showEditForm.emit(false);
+  }
+
+  onSubmit(form: NgForm): void {
     if (form.valid) {
       this.ret.emit(form.value);
     }
   }
-
 }

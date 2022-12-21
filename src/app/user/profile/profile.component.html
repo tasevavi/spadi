@@ -21,7 +21,8 @@
                     [lastName]="user.lastName" 
                     [nickName]="user.nickName"
                     [locationCity]="user.locationCity" 
-                    (ret)="changeUserInformation($event)">
+                    (ret)="changeUserInformation($event)"
+                    (showEditForm)="showOrHideEditForm()">
                   </app-profile-edit-form>
                 </div>
               </div>
