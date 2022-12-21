@@ -1,0 +1,33 @@
+img {
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+}
+
+.img-div {
+    display: flex;
+    justify-content: center;
+}
+
+.message-container { 
+    background-color: #f1f1f1;
+    text-align: center;
+    width: 25%;
+    margin: auto;
+    border-radius: 15px;
+    padding: 16px;
+    display: block;
+    padding-bottom: 100px;
+}
+
+.message-container p {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+a {
+    color: dodgerblue;
+    text-decoration: none;
+}

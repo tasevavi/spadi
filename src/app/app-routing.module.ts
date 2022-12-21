@@ -4,6 +4,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { DonateComponent } from './donate/donate.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
     pathMatch: 'full', 
     component: HomeComponent
   }, 
+  {
+    path: 'home',
+    component: HomeComponent
+  },
   {
     path: 'donate', 
     component: DonateComponent,
@@ -28,6 +33,10 @@ const routes: Routes = [
       authenticationRequired: true,
       authenticationFailureRedirectUrl: '/login',
     }
+  },
+  {
+    path: '**', 
+    component: NotFoundComponent
   }
 ];
 
