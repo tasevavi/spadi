@@ -22,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
 import { CatalogComponent } from './catalog/catalog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule, 
     SharedModule,
     MatProgressSpinnerModule, 
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

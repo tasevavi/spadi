@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from 'firebase/auth';
-import { collection, addDoc, doc, getDoc, setDoc } from 'firebase/firestore'; 
+import { collection, addDoc, doc, getDoc, setDoc, arrayUnion, updateDoc } from 'firebase/firestore'; 
 import { environment } from 'src/environments/environment';
 import { db } from 'src/main';
 import { NgForm } from '@angular/forms';
@@ -16,7 +16,7 @@ export class UserService {
 
   auth = getAuth();
   redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'] || '/';
-  uid: string | undefined;
+  uid: any;
   user: User | undefined;
 
   constructor(
@@ -136,7 +136,8 @@ export class UserService {
         firstName: null, 
         lastName: null, 
         nickName: this.user?.displayName,
-        locationCity: null
+        locationCity: null, 
+        requestedItems: []
       });
     } catch (e) {
       console.error('Error adding document: ', e);
@@ -159,6 +160,27 @@ export class UserService {
   editUserProfileInformation(uid: any, form: NgForm) {
     const userRef = doc(db, 'users', uid);
     setDoc(userRef, form, { merge: true });
+  }
+
+  //Add an item to user's requests
+  async addRequestItemToUserRequests(postId: string) {
+    const uid = this.getUserUid();
+    const userRef = doc(db, 'users', uid);
+    await updateDoc(userRef, {
+      requestedItems: arrayUnion(postId)
+    });
+  }
+
+  //Get all user requests -> returns an array with requested items' id
+  getUserRequests() {
+    const uid = this.getUserUid();
+    const userRequests = this.findUserByUid(uid)
+      .then(user => {
+        if (user !== undefined) {
+          return user['requestedItems'];
+        }
+      });
+    return userRequests;
   }
 
 }
