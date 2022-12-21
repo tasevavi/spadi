@@ -1,104 +1,93 @@
-<br>
-<div>
-    <h1 id="heading1">HOW CAN YOU HELP TODAY?</h1>
-</div>
-<br>
-<div id="image-div">
-  <img class="home-image" src="../../assets/home/best-things-to-donate-infographic.png" alt="donations-statistics">
-</div>
-<br>
-<div id="sidenav-left" class="sidenav-left">
-    <!-- TODO: Refactor this with ngFor -->
-    <div class="sidenav-message-container">
-        <h2>How to donate in 3 easy steps?</h2>
-        <p>1.Log in <a routerLink="/users/:id">your profile</a></p>
-        <p>2.Click <a routerLink="/donate">Donate now</a></p>
-        <p>3.Add the items you want to donate and write a short description</p>
-        <p>Congratulations! You just made a small difference for someone who needs it!</p>
+<section id="home">
+    <br>
+    <div>
+        <h1 id="heading1">HOW CAN YOU HELP TODAY?</h1>
     </div>
     <br>
-    <div class="sidenav-message-container">
-        <h2>Why donating textiles?</h2>
-        <p>1.You help someone in a time of need</p>
-        <p>2.Instead of throwing away, you reuse items</p>
-        <p>3.You clean your space</p>
+    <div id="image-div">
+    <img class="home-image" src="../../assets/home/best-things-to-donate-infographic.png" alt="donations-statistics">
     </div>
     <br>
-    <div class="sidenav-message-container">
-        <h2>What to donate for victims of floods?</h2>
-        <p>1.Sanitation products</p>
-        <p>2.Medicine</p>
-        <p>3.Baby supplies</p>
-        <p>4.Gear to dig the mud</p>
-    </div>
-    <br>
-    <div class="sidenav-message-container">
-        <h2>Where can you sign up for volunteering?</h2>
-        <p>1.TimeHeroes</p>
-        <p>2.Local NGOs</p>
-        <p>3.CVS</p>
-    </div>
-    <br>
-    <div class="sidenav-message-container">
-        <h2>How to determine if something is worth donating?</h2>
-        <p>1.Is it clean, without stains or holes?</p>
-        <p>2.Is it still whole and good to wear?</p>
-        <p>3.Ask yourself - would you like to wear it or would you like your kid to wear it?</p>
-        <p>If all 3 answers are "yes", then you're good to go - <a routerLink="/donate">donate now!</a></p>
-    </div>
-</div>
-<div id="sidenav-right" class="sidenav-right">
-    <!-- TODO: Refactor this with ngFor -->
-    <div class="sidenav-message-container">
-        <h2>How to donate in 3 easy steps?</h2>
-        <p>1.Log in <a routerLink="/users/:id">your profile</a></p>
-        <p>2.Click <a routerLink="/donate">Donate now</a></p>
-        <p>3.Add the items you want to donate and write a short description</p>
-        <p>Congratulations! You just made a small difference for someone who needs it!</p>
-    </div>
-    <br>
-    <div class="sidenav-message-container">
-        <h2>Why donating textiles?</h2>
-        <p>1.You help someone in a time of need</p>
-        <p>2.Instead of throwing away, you reuse items</p>
-        <p>3.You clean your space</p>
-    </div>
-    <br>
-    <div class="sidenav-message-container">
-        <h2>What to donate for victims of floods?</h2>
-        <p>1.Sanitation products</p>
-        <p>2.Medicine</p>
-        <p>3.Baby supplies</p>
-        <p>4.Gear to dig the mud</p>
-    </div>
-    <br>
-    <div class="sidenav-message-container">
-        <h2>Where can you sign up for volunteering?</h2>
-        <p>1.TimeHeroes</p>
-        <p>2.Local NGOs</p>
-        <p>3.CVS</p>
-    </div>
-    <br>
-    <div class="sidenav-message-container">
-        <h2>How to determine if something is worth donating?</h2>
-        <p>1.Is it clean, without stains or holes?</p>
-        <p>2.Is it still whole and good to wear?</p>
-        <p>3.Ask yourself - would you like to wear it or would you like your kid to wear it?</p>
-        <p>If all 3 answers are "yes", then you're good to go - <a routerLink="/donate">donate now!</a></p>
-    </div>
-</div>
-<main>
-    <ng-container *ngIf="isLoggedIn()">
-        <div class="message-container">
-            <p>Check all donated items in the <a routerLink="/catalog">catalog</a>.</p>
-            <p>Do you want to donate something? Post it <a routerLink="/donate">here</a>.</p>
+    <div id="sidenav-left" class="sidenav-left">
+        <!-- TODO: Refactor this with ngFor -->
+        <div class="sidenav-message-container">
+            <h2>How to donate in 3 easy steps?</h2>
+            <p>1.Log in <a routerLink="/users/:id">your profile</a></p>
+            <p>2.Click <a routerLink="/donate">Donate now</a></p>
+            <p>3.Add the items you want to donate and write a short description</p>
+            <p>Congratulations! You just made a small difference for someone who needs it!</p>
         </div>
-    </ng-container>
-    <ng-container *ngIf="!isLoggedIn()">
-        <div class="message-container">
-            <p>If you want to search through all donations, create a <a routerLink="/users/register">registration</a>.</p>
-            <p>If you have a registration, login <a routerLink="/users/login">here</a>.</p>
+        <br>
+        <div class="sidenav-message-container">
+            <h2>Why donating textiles?</h2>
+            <p>1.You help someone in a time of need</p>
+            <p>2.Instead of throwing away, you reuse items</p>
+            <p>3.You clean your space</p>
         </div>
-    </ng-container>
-    <br>
-</main>
+        <br>
+        <div class="sidenav-message-container">
+            <h2>What to donate for victims of floods?</h2>
+            <p>1.Sanitation products</p>
+            <p>2.Medicine</p>
+            <p>3.Baby supplies</p>
+            <p>4.Gear to dig the mud</p>
+        </div>
+        <br>
+        <div class="sidenav-message-container">
+            <h2>Where can you sign up for volunteering?</h2>
+            <p>1.TimeHeroes</p>
+            <p>2.Local NGOs</p>
+            <p>3.CVS</p>
+        </div>
+        <br>
+    </div>
+    <div id="sidenav-right" class="sidenav-right">
+        <!-- TODO: Refactor this with ngFor -->
+        <div class="sidenav-message-container">
+            <h2>How to donate in 3 easy steps?</h2>
+            <p>1.Log in <a routerLink="/users/:id">your profile</a></p>
+            <p>2.Click <a routerLink="/donate">Donate now</a></p>
+            <p>3.Add the items you want to donate and write a short description</p>
+            <p>Congratulations! You just made a small difference for someone who needs it!</p>
+        </div>
+        <br>
+        <div class="sidenav-message-container">
+            <h2>Why donating textiles?</h2>
+            <p>1.You help someone in a time of need</p>
+            <p>2.Instead of throwing away, you reuse items</p>
+            <p>3.You clean your space</p>
+        </div>
+        <br>
+        <div class="sidenav-message-container">
+            <h2>What to donate for victims of floods?</h2>
+            <p>1.Sanitation products</p>
+            <p>2.Medicine</p>
+            <p>3.Baby supplies</p>
+            <p>4.Gear to dig the mud</p>
+        </div>
+        <br>
+        <div class="sidenav-message-container">
+            <h2>How to determine if something is worth donating?</h2>
+            <p>1.Is it clean, without stains or holes?</p>
+            <p>2.Is it still whole and good to wear?</p>
+            <p>3.Ask yourself - would you like to wear it or would you like your kid to wear it?</p>
+            <p>If all 3 answers are "yes", then you're good to go - <a routerLink="/donate">donate now!</a></p>
+        </div>
+        <br>
+    </div>
+    <main>
+        <ng-container *ngIf="isLoggedIn()">
+            <div class="message-container">
+                <p>Check all donated items in the <a routerLink="/catalog">catalog</a>.</p>
+                <p>Do you want to donate something? Post it <a routerLink="/donate">here</a>.</p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!isLoggedIn()">
+            <div class="message-container">
+                <p>If you want to search through all donations, create a <a routerLink="/users/register">registration</a>.</p>
+                <p>If you have a registration, login <a routerLink="/users/login">here</a>.</p>
+            </div>
+        </ng-container>
+        <br>
+    </main>
+</section>
