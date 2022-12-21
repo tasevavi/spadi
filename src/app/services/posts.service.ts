@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { collection, addDoc, query, where, getDocs, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from 'src/main';
 import { DonationPost } from '../types/donationPost';
 
@@ -62,5 +62,26 @@ export class PostsService {
       console.error('Error getting document: ', e);
     }
     return posts;
+  }
+
+  //Get post to edit
+  async getPostByUid(uid: any) {
+    const docRef = doc(db, 'posts', uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      return undefined;
+    }
+  }
+
+  //Update edited post in DB
+  async updatePost(uid: any, editedPost: any) {
+    const docRef = doc(db, 'posts', uid);
+    try {
+      await updateDoc(docRef, editedPost);
+    } catch (e) {
+      console.error('Error updating document: ', e);
+    }
   }
 }

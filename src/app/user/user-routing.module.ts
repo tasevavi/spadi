@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { DonationEditFormComponent } from './donation-edit-form/donation-edit-form.component';
 
 const routes: Routes = [
     {
@@ -29,6 +30,15 @@ const routes: Routes = [
             {
                 path: 'profile',
                 component: ProfileComponent,
+                canActivate: [AuthGuard],
+                data: {
+                    authenticationRequired: true,
+                    authenticationFailureRedirectUrl: '/login',
+                }
+            },
+            {
+                path: 'edit',
+                component: DonationEditFormComponent,
                 canActivate: [AuthGuard],
                 data: {
                     authenticationRequired: true,

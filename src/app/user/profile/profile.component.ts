@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'firebase/auth';
 import { PostsService } from 'src/app/services/posts.service';
 import { UserService } from '../../services/user.service';
@@ -21,9 +21,10 @@ export class ProfileComponent implements OnInit {
   userPosts: any;
 
   constructor(
-    private userService: UserService, 
+    private postsService: PostsService,
     private route: ActivatedRoute, 
-    private postsService: PostsService
+    private router: Router,
+    private userService: UserService, 
   ) { }
   
   ngOnInit(): void {
@@ -45,6 +46,13 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  getUserDonations() { 
+    if (this.userPosts !== undefined) {
+      return this.userPosts.length;
+    }
+    return 0;
+  }
+
   getUserPosts() {
     this.postsService.getUserPosts(this.userUID)
     .then(posts => {
@@ -52,6 +60,13 @@ export class ProfileComponent implements OnInit {
         this.userPosts = posts;
       }
     })
+  }
+
+  editDonation(post: any) {
+    const redirectUrl = 'users/edit';
+    this.router.navigate([redirectUrl], { queryParams: {
+      id: post.key
+    }});
   }
 
   setCurrentUserInformation() {

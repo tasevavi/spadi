@@ -1,0 +1,72 @@
+<section id="edit-donation">
+    <form #form="ngForm" method="POST" (ngSubmit)="post(form)" id="donate-form">
+        <div class="container">
+            <h1>Edit your donation description</h1>
+
+            <label for="postTitle">Title</label>
+            <input 
+                #postTitleInput="ngModel"
+                id="postTitle" 
+                name="postTitle" 
+                [(ngModel)]="postToEdit['postTitle']" 
+                type="text" 
+                value="{{postToEdit['postTitle']}}"
+                required postTitle>
+            <ng-container *ngIf="postTitleInput.touched">
+                <p *ngIf="postTitleInput.errors?.['required']" class="error">Title is required</p>
+            </ng-container>
+
+            <label for="description">Description</label>
+            <input 
+                #descriptionInput="ngModel" 
+                id="description" 
+                [minlength]="10" 
+                name="description" 
+                [(ngModel)]="postToEdit['description']" 
+                required 
+                type="text" 
+                value="{{postToEdit['description']}}">
+            <ng-container *ngIf="descriptionInput.touched">
+                <p *ngIf="descriptionInput.errors?.['required']" class="error">Description is required</p>
+                <p *ngIf="descriptionInput.errors?.['minlength']" class="error">Description should be at least 10 characters long</p>
+            </ng-container>
+
+            <label for="category">Category</label>
+            <app-dropdown
+                [name]="dropdownName"
+                [value]="selectedCategory"
+                [data]="categoriesData"
+                (ret)="onSelectCategory($event)">
+            </app-dropdown>
+
+            <label for="contactInformation">Contact for details</label>
+            <input 
+                #contactInformationInput="ngModel" 
+                id="contactInformation" 
+                [minlength]="5" 
+                name="contactInformation" 
+                [(ngModel)]="postToEdit['contact']" 
+                required 
+                type="text" 
+                value="{{postToEdit['contact']}}">
+            <ng-container *ngIf="contactInformationInput.touched">
+                <p *ngIf="contactInformationInput.errors?.['required']" class="error">Contact info is required</p>
+                <p *ngIf="contactInformationInput.errors?.['minlength']" class="error">Contact info should be at least 5 characters long</p>
+            </ng-container>
+
+            <label for="postPhoto">Upload a photo</label>
+            <input 
+                #postPhotoInput="ngModel" 
+                id="postPhoto" 
+                name="postPhoto" 
+                [(ngModel)]="postToEdit['photo']" 
+                required 
+                type="text" 
+                value="{{postToEdit['photo']}}">
+            <ng-container *ngIf="postPhotoInput.touched">
+                <p *ngIf="postPhotoInput.errors?.['required']" class="error">A photo is required</p>
+            </ng-container>       
+            <input type="submit" class="submitbtn button" value="Submit">
+        </div>
+    </form>
+</section>

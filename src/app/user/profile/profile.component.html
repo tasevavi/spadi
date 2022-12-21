@@ -33,7 +33,7 @@
             <div class="container" *ngIf="!showEditForm">
               <div>
                 <span style="display: inline-block;" class="material-icons">card_giftcard</span>
-                <p>Donations made: {{user.postings}}</p>
+                <p>Donations made: {{getUserDonations()}}</p>
               </div>
               <div>
                 <span style="display: inline-block;" class="material-icons">room</span>
@@ -71,7 +71,7 @@
           <p *ngIf="post.value.description.length < 40">{{post.value.description}}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button class="btn">Edit</button>
+          <button mat-button class="btn" (click)="editDonation(post)">Edit</button>
         </mat-card-actions>
       </mat-card>
     </div>
