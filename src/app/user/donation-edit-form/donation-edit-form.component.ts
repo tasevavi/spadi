@@ -71,12 +71,18 @@ export class DonationEditFormComponent implements OnInit {
     this.postEdited.category = this.selectedCategory;
     this.postEdited.userIUD = this.uid;
     this.postsService.updatePost(this.postId, this.postEdited);
-    this.router.navigate(['users/profile'], { queryParams: {
-      id: this.uid
-    }});
+    this.navigateToProfile();
   }
 
   deletePost() {
-    console.log('delete this')
+    alert('Are you sure you want to delete post?')
+    this.postsService.deletePost(this.postId);
+    this.navigateToProfile();
+  }
+
+  navigateToProfile() {
+    this.router.navigate(['users/profile'], { queryParams: {
+      id: this.uid
+    }});
   }
 }

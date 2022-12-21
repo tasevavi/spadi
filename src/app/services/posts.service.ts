@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { collection, addDoc, query, where, getDocs, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from 'src/main';
 import { DonationPost } from '../types/donationPost';
 
@@ -82,6 +82,15 @@ export class PostsService {
       await updateDoc(docRef, editedPost);
     } catch (e) {
       console.error('Error updating document: ', e);
+    }
+  }
+
+  //Delete post in DB
+  async deletePost(uid: any) {
+    try {
+      await deleteDoc(doc(db, 'posts', uid));
+    } catch (e) {
+      console.error('Error deleting document: ', e);
     }
   }
 }
