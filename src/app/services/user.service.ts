@@ -138,6 +138,7 @@ export class UserService {
         lastName: null, 
         nickName: this.user?.displayName,
         locationCity: null, 
+        photo: null,
         requestedItems: []
       });
     } catch (e) {
@@ -161,6 +162,14 @@ export class UserService {
   editUserProfileInformation(uid: any, form: NgForm) {
     const userRef = doc(db, 'users', uid);
     setDoc(userRef, form, { merge: true });
+  }
+
+  //Edit user photo
+  async updateUserProfilePicture(uid: any, url: any) {
+    const userRef = doc(db, 'users', uid);
+    await updateDoc(userRef, {
+      photo: url
+    });
   }
 
   //Add an item to user's requests

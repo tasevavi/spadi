@@ -14,8 +14,9 @@ import { CurrentUser } from '../../types/currentUser';
 export class ProfileComponent implements OnInit {
   
   currentUser: User | undefined;
-  profilePictureSrc: string = ''; 
+  profilePictureSrc: string | null | undefined; 
   showEditForm: boolean = false;
+  showEditProfilePictureForm: boolean = false;
   user: any = new CurrentUser();
   userUID: string | undefined;
   userPosts: any;
@@ -41,19 +42,27 @@ export class ProfileComponent implements OnInit {
       }
     })
 
-    if (this.profilePictureSrc === '') {
-      this.profilePictureSrc = '../../../assets/blank-profile-pic.png';
-    }
+    this.userService.findUserByUid(this.userUID)
+      .then(user => {
+        if (user !== undefined) {
+          if (user['photo'] === null || user['photo'] === '' || user['photo'] === undefined) {
+            this.profilePictureSrc = '../../../assets/blank-profile-pic.png';
+          } else {
+            this.profilePictureSrc = user['photo'];
+          }
+        }
+      });
+    console.log(this.profilePictureSrc)
   }
 
-  getUserDonations() { 
+  getUserDonations(): number { 
     if (this.userPosts !== undefined) {
       return this.userPosts.length;
     }
     return 0;
   }
 
-  getUserPosts() {
+  getUserPosts(): void {
     this.postsService.getUserPosts(this.userUID)
     .then(posts => {
       if (posts !== undefined) {
@@ -62,14 +71,14 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  editDonation(post: any) {
+  editDonation(post: any): void {
     const redirectUrl = 'users/edit';
     this.router.navigate([redirectUrl], { queryParams: {
       id: post.key
     }});
   }
 
-  setCurrentUserInformation() {
+  setCurrentUserInformation(): void {
     this.userService.findUserByUid(this.userUID)
     .then(data => {
       if (data !== undefined) {
@@ -82,13 +91,31 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  changeUserInformation(form: NgForm) {
+  changeUserInformation(form: NgForm): void {
     if (form.invalid) { 
       return; 
     }
     this.userService.editUserProfileInformation(this.userUID, form);
     this.showOrHideEditForm();
     this.setCurrentUserInformation();
+  }
+
+  changeUserPhoto(event: any): void {
+    this.showOrHideEditProfilePictureForm();
+    this.userService.findUserByUid(this.userUID)
+      .then(user => {
+        if (user !== undefined) {
+          this.profilePictureSrc = user['photo'];
+        }
+      });
+  }
+
+  openEditProfilePictureForm(): void {
+    this.showEditProfilePictureForm = !this.showEditProfilePictureForm;
+  }
+
+  showOrHideEditProfilePictureForm(): void {
+    this.showEditProfilePictureForm = !this.showEditProfilePictureForm;
   }
 
   showOrHideEditForm() {

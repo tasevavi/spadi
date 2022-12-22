@@ -8,7 +8,7 @@ export const environment = {
     apiKey: "AIzaSyC0TkEUqFzjyzoKtqioIfZF5Ns0JQIsJbY",
     authDomain: "rest-spadi.firebaseapp.com",
     projectId: "rest-spadi",
-    storageBucket: "rest-spadi.appspot.com",
+    storageBucket: "gs://rest-spadi.appspot.com",
     messagingSenderId: "358269656362",
     appId: "1:358269656362:web:ded4cc08b863dbdcb7d253",
     measurementId: "G-G5LYK4CMTR"

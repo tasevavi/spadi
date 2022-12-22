@@ -12,6 +12,7 @@ import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.
 import { MatCardModule } from '@angular/material/card';
 import { DonationEditFormComponent } from './donation-edit-form/donation-edit-form.component';
 import { SharedModule } from "../shared/shared.module";
+import { UploadPictureComponent } from './upload-picture/upload-picture.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SharedModule } from "../shared/shared.module";
         RegisterComponent,
         ProfileComponent,
         ProfileEditFormComponent,
-        DonationEditFormComponent
+        DonationEditFormComponent,
+        UploadPictureComponent
     ],
     providers: [
         UserService

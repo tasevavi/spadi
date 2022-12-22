@@ -5,7 +5,12 @@
         <div class="block">
           <div class="profile-column-block mb0 center">
             <div class="img-div">
-              <img width="250" height="250" [src]="profilePictureSrc" alt="profile picture">
+              <a (click)="openEditProfilePictureForm()">
+                <img width="250" height="250" [src]="profilePictureSrc" alt="profile picture">
+              </a>
+            </div>
+            <div *ngIf="showEditProfilePictureForm">
+              <app-upload-picture (uploaded)="changeUserPhoto($event)"></app-upload-picture>
             </div>
             <div data-original-top="0px" class="sticky">
               <h1 class="card-names">
