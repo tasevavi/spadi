@@ -21,7 +21,7 @@ export class StorageService {
     contentType: 'image/jpeg'
   };
 
-  uploadProfilePicture(file: any, userUID: any): void {
+  uploadProfilePicture(file: any, userUID: any, afterUploadComplete: any): void {
     // Upload file and metadata to the object 'images/mountains.jpg'
     const storageRef = ref(this.storage, 'profilePictures/' + file.name);
     const uploadTask = uploadBytesResumable(storageRef, file, this.metadata);
@@ -53,13 +53,12 @@ export class StorageService {
           break;
       }
     }, 
-    () => {
+    async () => {
       // Upload completed successfully, now we can get the download URL
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        //console.log('File available at', downloadURL);
-        this.userService.updateUserProfilePicture(userUID, downloadURL);
-      });
-    });
-  }
+      const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+      await this.userService.updateUserProfilePicture(userUID, downloadURL);
+      afterUploadComplete();
+    }
+  )}
 }
 

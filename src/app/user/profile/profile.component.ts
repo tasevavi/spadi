@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'firebase/auth';
@@ -40,18 +40,7 @@ export class ProfileComponent implements OnInit {
         this.getUserPosts();
         this.setCurrentUserInformation();
       }
-    })
-
-    this.userService.findUserByUid(this.userUID)
-      .then(user => {
-        if (user !== undefined) {
-          if (user['photo'] === null || user['photo'] === '' || user['photo'] === undefined) {
-            this.profilePictureSrc = '../../../assets/blank-profile-pic.png';
-          } else {
-            this.profilePictureSrc = user['photo'];
-          }
-        }
-      });
+    });
   }
 
   getUserDonations(): number { 
@@ -86,6 +75,9 @@ export class ProfileComponent implements OnInit {
             this.user[key] = data[key];
           }
         });
+        if (this.user.photo === '' || this.user.photo === undefined || this.user.photo === null) {
+          this.user.photo = '../../../assets/blank-profile.pic.png'
+        }
       }
     });
   }
@@ -99,14 +91,9 @@ export class ProfileComponent implements OnInit {
     this.setCurrentUserInformation();
   }
 
-  changeUserPhoto(event: any): void {
+  changeUserPhoto() {
+    this.setCurrentUserInformation();
     this.showOrHideEditProfilePictureForm();
-    this.userService.findUserByUid(this.userUID)
-      .then(user => {
-        if (user !== undefined) {
-          this.profilePictureSrc = user['photo'];
-        }
-      });
   }
 
   openEditProfilePictureForm(): void {

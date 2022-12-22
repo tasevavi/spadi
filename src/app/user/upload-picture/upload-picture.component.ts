@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UploadPictureComponent implements OnInit {
   selectedFile!: File;
   uid: string = this.userService.getUserUid();
+  afterUploadPicture = ()=>{ this.uploaded.emit(true) };
 
   @Output() uploaded: EventEmitter<any> = new EventEmitter();
 
@@ -28,7 +29,6 @@ export class UploadPictureComponent implements OnInit {
   }
 
   upload(): void {
-    this.storageService.uploadProfilePicture(this.selectedFile, this.uid);
-    this.uploaded.emit(true);
+    this.storageService.uploadProfilePicture(this.selectedFile, this.uid, this.afterUploadPicture);
   }
 }
