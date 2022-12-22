@@ -4,11 +4,15 @@ export class CurrentUser {
     lastName: string
     nickName: string
     locationCity: string
+    photo: string
+    requestedItems: string[]
     constructor() {
         this.email = '',
         this.firstName = '',
         this.lastName = '',
         this.nickName = '',
-        this.locationCity = ''
+        this.locationCity = '',
+        this.photo = '',
+        this.requestedItems = []
     }
 }

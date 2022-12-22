@@ -30,14 +30,20 @@ export class CatalogComponent implements OnInit {
     this.getUserRequestedItems();
   }
 
-  alreadyRequested(itemId: string) {
+  alreadyRequested(itemId: string): boolean {
     if (this.userRequestedItems !== undefined) {
       return this.userRequestedItems.includes(itemId);
     }
     return false;
   }
 
-  getLength() {
+ clickRequest(itemId: string): void {
+    alert("Item added to your requests");
+    this.userService.addRequestItemToUserRequests(itemId);
+    this.getUserRequestedItems();
+ }
+
+  getLength(): number {
     if (this.allPosts !== undefined) {
       this.length = this.allPosts.length;
     }
@@ -53,21 +59,15 @@ export class CatalogComponent implements OnInit {
     });
  }
 
- getUserRequestedItems() {
+ getUserRequestedItems(): void {
     this.userService.getUserRequests$()
     .pipe(tap(requests => this.userRequestedItems = requests))
     .subscribe();
  }
 
- handlePageEvent(event: any) {
+  handlePageEvent(event: any): void {
     let start = event.pageIndex * this.pageSize;
     let end = start + this.pageSize;
     this.postsPerPage = this.allPosts.slice(start, end);
- }
-
- clickRequest(itemId: string) {
-    alert("Item added to your requests");
-    this.userService.addRequestItemToUserRequests(itemId);
-    this.getUserRequestedItems();
- }
+  }
 }

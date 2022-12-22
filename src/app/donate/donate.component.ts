@@ -18,9 +18,9 @@ export class DonateComponent implements OnInit {
   ) { }
 
   categoriesData = ['books', 'clothes', 'cosmetics', 'cutlery', 'food', 'games', 'home', 'shoes', 'tech', 'time', 'other'];
+  donationPost: DonationPost = { postTitle: '', description: '', category: '', contact: '', photo: '', userIUD: '' };
   dropdownName = 'categoryDonation';
   selectedCategory: string = '';
-  donationPost: DonationPost = { postTitle: '', description: '', category: '', contact: '', photo: '', userIUD: '' };
 
   ngOnInit(): void {
     this.donationPost.userIUD = this.userService.getUserUid();
