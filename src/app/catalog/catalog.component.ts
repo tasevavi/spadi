@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../services/posts.service';
 import { UserService } from '../services/user.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
@@ -9,14 +10,14 @@ import { UserService } from '../services/user.service';
 })
 export class CatalogComponent implements OnInit {
   allPosts: any;
-  spinner: boolean = true;
-  length: number = 0; //The length of the total number of items that are being paginated. Defaulted to 0.
-  pageSize: number = 10; //Number of items per page
-  showFirstLastButtons: boolean = true;
   hidePageSize: boolean = false;
+  length: number = 0; //The length of the total number of items that are being paginated. Defaulted to 0.
+  showFirstLastButtons: boolean = true;
   pageIndex: number = 0; //The zero-based page index of the displayed list of items. Defaulted to 0.
+  pageSize: number = 6; //Number of items per page
+  postsPerPage: any = [];
   showPageSizeOptions: boolean = true;
-  pageSizeOptions = [10];
+  spinner: boolean = true;
   userRequestedItems: String[] | undefined = [];
   
   constructor(
@@ -47,26 +48,24 @@ export class CatalogComponent implements OnInit {
     return this.postsService.getAllPosts()
     .then(posts => {
       this.allPosts = posts;
+      this.postsPerPage = this.allPosts.slice(0, this.pageSize);
       this.spinner = false;
     });
  }
 
  getUserRequestedItems() {
-  return this.userService.getUserRequests()
-  .then(requests => {
-    this.userRequestedItems = requests;
-  });
+    this.userService.getUserRequests$()
+    .pipe(tap(requests => this.userRequestedItems = requests))
+    .subscribe();
  }
 
  handlePageEvent(event: any) {
-    //TODO: add logic for event handling
-    // length: 1
-    // pageIndex: 0
-    // pageSize: 10
-    // previousPageIndex: 1
+    let start = event.pageIndex * this.pageSize;
+    let end = start + this.pageSize;
+    this.postsPerPage = this.allPosts.slice(start, end);
  }
 
- clickRequest(item: Object, itemId: string) {
+ clickRequest(itemId: string) {
     alert("Item added to your requests");
     this.userService.addRequestItemToUserRequests(itemId);
     this.getUserRequestedItems();

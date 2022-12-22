@@ -6,6 +6,7 @@ import { collection, addDoc, doc, getDoc, setDoc, arrayUnion, updateDoc } from '
 import { environment } from 'src/environments/environment';
 import { db } from 'src/main';
 import { NgForm } from '@angular/forms';
+import { from, Observable } from 'rxjs';
 
 const apiURL = environment.apiURL; 
 
@@ -172,14 +173,14 @@ export class UserService {
   }
 
   //Get all user requests -> returns an array with requested items' id
-  getUserRequests() {
+  getUserRequests$(): Observable<String[]> {
     const uid = this.getUserUid();
-    const userRequests = this.findUserByUid(uid)
+    const userRequests = from(this.findUserByUid(uid)
       .then(user => {
         if (user !== undefined) {
           return user['requestedItems'];
         }
-      });
+      }));
     return userRequests;
   }
 

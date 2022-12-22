@@ -33,10 +33,6 @@ const routes: Routes = [
       authenticationRequired: true,
       authenticationFailureRedirectUrl: '/login',
     }
-  },
-  {
-    path: '**', 
-    component: NotFoundComponent
   }
 ];
 

@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { DonationEditFormComponent } from './donation-edit-form/donation-edit-form.component';
+import { NotFoundComponent } from '../shared/not-found/not-found.component';
 
 const routes: Routes = [
     {
@@ -44,6 +45,10 @@ const routes: Routes = [
                     authenticationRequired: true,
                     authenticationFailureRedirectUrl: '/login',
                 }
+            },
+            {
+              path: '**', 
+              component: NotFoundComponent
             }
         ]
     }
