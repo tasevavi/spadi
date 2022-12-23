@@ -76,7 +76,7 @@ export class ProfileComponent implements OnInit {
           }
         });
         if (this.user.photo === '' || this.user.photo === undefined || this.user.photo === null) {
-          this.user.photo = '../../../assets/blank-profile.pic.png'
+          this.user.photo = '../../../assets/blank-profile-pic.png'
         }
       }
     });
